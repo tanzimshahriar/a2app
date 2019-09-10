@@ -17,7 +17,7 @@
 5. Try running the app locally by "npm run serve" from the app directory
 ```
 ```
-6. Deploy the app to gcloud from dist/app.yaml
+6. Deploy the app to gcloud using app.yaml
 ```
 
 ### Compiles and hot-reloads for development

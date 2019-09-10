@@ -1,7 +1,20 @@
 runtime: python27
 api_version: 1
 threadsafe: true
-
+skip_files:
+- node_modules/
+- public/
+- src/
+- browserlistrc
+- .eslintrc.js
+- .gitignore
+- babel.config.js'
+- package.lock.json
+- package.json
+- postcss.config.js
+- README.md
+- vue.config.js
+- .git/
 handlers:
 - url: /(.*\.(js|css|png|jpg|svg|ttf|ico|json))$
   static_files: dist/\1
