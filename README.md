@@ -1,8 +1,23 @@
 # a2app
 
-## Project setup
+## Project setup steps
 ```
-npm install
+1. Install npm from https://www.npmjs.com/get-npm
+```
+```
+2. Install vue cli globally by "npm i -g @vue/cli"
+```
+```
+3. Clone the git repo by "git clone https://github.com/tanzimshahriar/a2app.git" 
+```
+```
+4. Install all dependencies by "npm install" from the app directory
+```
+```
+5. Try running the app locally by "npm run serve" from the app directory
+```
+```
+6. Deploy the app to gcloud from dist/app.yaml
 ```
 
 ### Compiles and hot-reloads for development
