@@ -2,20 +2,26 @@
   <div>
     <div class="modal" v-if="signupModalOpen">
       <CustomModal
-        v-bind:title="signupTitle"
-        v-bind:btnLabel="signupBtnLabel"
-        v-bind:firstInputLabel="signupFirstInputLabel"
-        v-bind:secondInputLabel="signupSecondInputLabel"
+        title="Signup"
+        btnLabel="SIGNUP"
+        firstInputLabel="Enter Your Email"
+        secondInputLabel="Enter Your Password"
+        inputOneType="email"
+        inputTwoType="password"
+        v-bind:errorMessage="errorMessage"
         @close="handleSignupClose"
         @submit="submitSignupForm"
       />
     </div>
     <div class="modal" v-if="loginModalOpen">
       <CustomModal
-        v-bind:title="loginTitle"
-        v-bind:btnLabel="loginBtnLabel"
-        v-bind:firstInputLabel="loginFirstInputLabel"
-        v-bind:secondInputLabel="loginSecondInputLabel"
+        title="Login"
+        btnLabel="LOGIN"
+        firstInputLabel="Enter Your Email"
+        secondInputLabel="Enter Your Password"
+        inputOneType="email"
+        inputTwoType="password"
+        v-bind:errorMessage="errorMessage"
         @close="handleLoginClose"
         @submit="submitLoginForm"
       />
@@ -33,20 +39,17 @@
 
 <script>
 import CustomModal from "../views/CustomModal";
+import axios from "axios";
 export default {
   name: "NavBar",
   data() {
     return {
       loginModalOpen: false,
       signupModalOpen: false,
-      loginTitle: "Login",
-      loginBtnLabel: "LOGIN",
-      loginFirstInputLabel: "Enter Your Email",
-      loginSecondInputLabel: "Enter Your Password",
-      signupTitle: "Signup",
-      signupBtnLabel: "SIGNUP",
-      signupFirstInputLabel: "Enter Your Email",
-      signupSecondInputLabel: "Enter Your Password"
+      enteredEmail: "",
+      enteredPassword: "",
+      errorMessage: "",
+      emailRegex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
     };
   },
   props: {
@@ -60,17 +63,64 @@ export default {
     }
   },
   methods: {
-    openLoginModal: function() {
+    validateEmailAndPassword(email, password) {
+      if (!this.isValidEmail(email)) {
+        this.errorMessage = "*please enter a valid email";
+        return false;
+      } else if (password.length <= 5) {
+        this.errorMessage =
+          "*please enter a password with 6 minimum characters";
+        return false;
+      } else {
+        this.errorMessage = "";
+        return true;
+      }
+    },
+    isValidEmail(email) {
+      return email == "" ? false : this.emailRegex.test(email) ? true : false;
+    },
+    openLoginModal() {
       this.loginModalOpen = true;
     },
-    openSignupModal: function() {
+    openSignupModal() {
       this.signupModalOpen = true;
     },
-    submitSignupForm() {},
-    submitLoginForm() {
-      // const formIsValid = emailIsValid && passwordIsValid
-      // if(loginFormIsValid) {
-      // }
+    submitSignupForm(enteredData) {
+      if (
+        this.validateEmailAndPassword(
+          enteredData.inputOne,
+          enteredData.inputTwo
+        )
+      ) {
+        var postData = {
+          email: enteredData.inputOne,
+          password: enteredData.inputTwo
+        };
+
+        axios
+          .post(
+            //for dev env:
+            // "http://localhost:8080/register",
+            "https://assignment-two-server.appspot.com/register",
+            postData
+          )
+          .then(res => {
+            console.log("RESPONSE RECEIVED: ", res);
+          })
+          .catch(err => {
+            console.log("AXIOS ERROR: ", err);
+          });
+      }
+    },
+    submitLoginForm(enteredData) {
+      if (
+        this.validateEmailAndPassword(
+          enteredData.inputOne,
+          enteredData.inputTwo
+        )
+      ) {
+        console.log("Login Doesnt work yet");
+      }
     },
     handleLoginClose() {
       this.loginModalOpen = false;
