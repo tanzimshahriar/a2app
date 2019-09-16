@@ -26,6 +26,13 @@
         @submit="submitLoginForm"
       />
     </div>
+    <div class="modal" v-if="signupSuccessModal">
+      <CustomMessage
+        title="Signup completed"
+        message="Your account has been created successfully."
+        @close="handleSuccessSignupModalClose"
+      />
+    </div>
     <div id="nav">
       <div class="btn" v-on:click="openLoginModal">{{ this.btnOne }}</div>
       <div class="btn" v-on:click="openSignupModal">{{ this.btnTwo }}</div>
@@ -39,6 +46,7 @@
 
 <script>
 import CustomModal from "../views/CustomModal";
+import CustomMessage from "../views/customMessage";
 import axios from "axios";
 export default {
   name: "NavBar",
@@ -46,6 +54,7 @@ export default {
     return {
       loginModalOpen: false,
       signupModalOpen: false,
+      signupSuccessModal: false,
       enteredEmail: "",
       enteredPassword: "",
       errorMessage: "",
@@ -85,6 +94,10 @@ export default {
     openSignupModal() {
       this.signupModalOpen = true;
     },
+    openSignupSuccessModal() {
+      this.handleSignupClose();
+      this.signupSuccessModal = true;
+    },
     submitSignupForm(enteredData) {
       if (
         this.validateEmailAndPassword(
@@ -100,15 +113,26 @@ export default {
         axios
           .post(
             //for dev env:
-            // "http://localhost:8080/register",
-            "https://assignment-two-server.appspot.com/register",
+            "http://localhost:8080/register",
+            //"https://assignment-two-server.appspot.com/register",
             postData
           )
           .then(res => {
-            console.log("RESPONSE RECEIVED: ", res);
+            console.log(res.data.msg);
+            if(res.status==200 && res.data.result=="Success"){
+              this.openSignupSuccessModal();
+            }
+            else{
+              this.errorMessage = res.data.msg;
+            }
           })
           .catch(err => {
-            console.log("AXIOS ERROR: ", err);
+            if(err.response.data.ErrorCode && err.response.data.ErrorCode=="ER_DUP_ENTRY"){
+              this.errorMessage = "Error! Email already exists."
+            }
+            else{
+              this.errorMessage = (err.response.data.msg + " Please try again.");
+            }
           });
       }
     },
@@ -127,10 +151,14 @@ export default {
     },
     handleSignupClose() {
       this.signupModalOpen = false;
+    },
+    handleSuccessSignupModalClose() {
+      this.signupSuccessModal = false;
     }
   },
   components: {
-    CustomModal
+    CustomModal,
+    CustomMessage
   }
 };
 </script>

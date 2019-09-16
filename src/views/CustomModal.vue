@@ -9,12 +9,14 @@
         <input
           v-bind:type="inputOneTypeComputed"
           v-bind:placeholder="placeholderOne"
-          v-model="firstInput"
+          v-model="inputData.inputOne"
+          ref="inputOne"
         />
         <input
           v-bind:type="inputTwoTypeComputed"
           v-bind:placeholder="placeholderTwo"
-          v-model="secondInput"
+          v-model="inputData.inputTwo"
+          ref="inputTwo"
         />
         <div class="submit-btn-container">
           <div class="submit-btn" v-on:click="submitClicked">
@@ -33,9 +35,7 @@ export default {
   data: function() {
     return {
       closeClicked: false,
-      firstInput: "",
-      secondInput: "",
-      returnDataToParent: {
+      inputData: {
         inputOne: "",
         inputTwo: ""
       }
@@ -92,9 +92,7 @@ export default {
       this.$emit("close");
     },
     submitClicked() {
-      this.returnDataToParent.inputOne = this.firstInput;
-      this.returnDataToParent.inputTwo = this.secondInput;
-      this.$emit("submit", this.returnDataToParent);
+      this.$emit("submit", this.inputData);
     }
   }
 };
