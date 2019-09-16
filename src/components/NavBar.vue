@@ -7,6 +7,7 @@
         v-bind:firstInputLabel="signupFirstInputLabel"
         v-bind:secondInputLabel="signupSecondInputLabel"
         @close="handleSignupClose"
+        @submit="submitSignupForm"
       />
     </div>
     <div class="modal" v-if="loginModalOpen">
@@ -16,6 +17,7 @@
         v-bind:firstInputLabel="loginFirstInputLabel"
         v-bind:secondInputLabel="loginSecondInputLabel"
         @close="handleLoginClose"
+        @submit="submitLoginForm"
       />
     </div>
     <div id="nav">
@@ -44,7 +46,7 @@ export default {
       signupTitle: "Signup",
       signupBtnLabel: "SIGNUP",
       signupFirstInputLabel: "Enter Your Email",
-      signupSecondInputLabel: "Enter Your Password",
+      signupSecondInputLabel: "Enter Your Password"
     };
   },
   props: {
@@ -64,6 +66,7 @@ export default {
     openSignupModal: function() {
       this.signupModalOpen = true;
     },
+    submitSignupForm() {},
     submitLoginForm() {
       // const formIsValid = emailIsValid && passwordIsValid
       // if(loginFormIsValid) {
@@ -90,7 +93,6 @@ export default {
   justify-content: flex-end;
   align-items: flex-start;
 }
-
 
 .fixed-header {
   align-self: center;
