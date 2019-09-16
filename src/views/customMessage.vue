@@ -1,6 +1,5 @@
 <template>
   <div class="messageContainer">
-    <div class="close-btn" v-on:click="closeModal">Close Window</div>
     <div class="custom-message">
       <div class="title">
         {{ this.title }}
@@ -26,7 +25,7 @@ export default {
   methods: {
     closeModal() {
       this.$emit("close");
-    }      
+    }
   }
 };
 </script>
@@ -42,23 +41,16 @@ export default {
   justify-content: center;
   align-items: center;
   height: 30%;
-  margin:20px;
+  margin: 20px;
 }
 .title {
   font-size: 35px;
   font-weight: bolder;
 }
-.close-btn {
-  cursor: pointer;
-  padding: 10px;
-}
-.close-btn:hover {
-  color: #42b983;
-}
 .message {
   font-size: 25px;
   font-weight: lighter;
-  margin:20px;
-  padding-top:10px;
+  margin: 20px;
+  padding-top: 10px;
 }
 </style>

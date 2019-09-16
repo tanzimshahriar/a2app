@@ -17,10 +17,30 @@
 import Product from "./Product";
 export default {
   name: "ProductsContainer",
+  data: function() {
+    return {
+      products: [
+        {
+          id: 1,
+          title: "Product One",
+          price: "25$"
+        },
+        {
+          id: 2,
+          title: "Product Two",
+          price: "15$"
+        },
+        {
+          id: 3,
+          title: "Three",
+          price: "20$"
+        }
+      ]
+    };
+  },
   components: {
     Product
-  },
-  props: ["products"]
+  }
 };
 </script>
 
