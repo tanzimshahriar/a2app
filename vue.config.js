@@ -1,3 +1,6 @@
 module.exports = {
-  publicPath: ""
+  publicPath: "",
+  devServer: {
+    proxy: "https://assignment-two-server.appspot.com"
+  }
 };

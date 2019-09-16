@@ -2,20 +2,35 @@
   <div>
     <div class="modal" v-if="signupModalOpen">
       <CustomModal
-        v-bind:title="signupTitle"
-        v-bind:btnLabel="signupBtnLabel"
-        v-bind:firstInputLabel="signupFirstInputLabel"
-        v-bind:secondInputLabel="signupSecondInputLabel"
+        title="Signup"
+        btnLabel="SIGNUP"
+        firstInputLabel="Enter Your Email"
+        secondInputLabel="Enter Your Password"
+        inputOneType="email"
+        inputTwoType="password"
+        v-bind:errorMessage="errorMessage"
         @close="handleSignupClose"
+        @submit="submitSignupForm"
       />
     </div>
     <div class="modal" v-if="loginModalOpen">
       <CustomModal
-        v-bind:title="loginTitle"
-        v-bind:btnLabel="loginBtnLabel"
-        v-bind:firstInputLabel="loginFirstInputLabel"
-        v-bind:secondInputLabel="loginSecondInputLabel"
+        title="Login"
+        btnLabel="LOGIN"
+        firstInputLabel="Enter Your Email"
+        secondInputLabel="Enter Your Password"
+        inputOneType="email"
+        inputTwoType="password"
+        v-bind:errorMessage="errorMessage"
         @close="handleLoginClose"
+        @submit="submitLoginForm"
+      />
+    </div>
+    <div class="modal" v-if="signupSuccessModal">
+      <CustomMessage
+        title="Signup completed"
+        message="Your account has been created successfully."
+        @close="handleSuccessSignupModalClose"
       />
     </div>
     <div id="nav">
@@ -31,20 +46,19 @@
 
 <script>
 import CustomModal from "../views/CustomModal";
+import CustomMessage from "../views/customMessage";
+import axios from "axios";
 export default {
   name: "NavBar",
   data() {
     return {
       loginModalOpen: false,
       signupModalOpen: false,
-      loginTitle: "Login",
-      loginBtnLabel: "LOGIN",
-      loginFirstInputLabel: "Enter Your Email",
-      loginSecondInputLabel: "Enter Your Password",
-      signupTitle: "Signup",
-      signupBtnLabel: "SIGNUP",
-      signupFirstInputLabel: "Enter Your Email",
-      signupSecondInputLabel: "Enter Your Password",
+      signupSuccessModal: false,
+      enteredEmail: "",
+      enteredPassword: "",
+      errorMessage: "",
+      emailRegex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
     };
   },
   props: {
@@ -58,26 +72,93 @@ export default {
     }
   },
   methods: {
-    openLoginModal: function() {
+    validateEmailAndPassword(email, password) {
+      if (!this.isValidEmail(email)) {
+        this.errorMessage = "*please enter a valid email";
+        return false;
+      } else if (password.length <= 5) {
+        this.errorMessage =
+          "*please enter a password with 6 minimum characters";
+        return false;
+      } else {
+        this.errorMessage = "";
+        return true;
+      }
+    },
+    isValidEmail(email) {
+      return email == "" ? false : this.emailRegex.test(email) ? true : false;
+    },
+    openLoginModal() {
       this.loginModalOpen = true;
     },
-    openSignupModal: function() {
+    openSignupModal() {
       this.signupModalOpen = true;
     },
-    submitLoginForm() {
-      // const formIsValid = emailIsValid && passwordIsValid
-      // if(loginFormIsValid) {
-      // }
+    openSignupSuccessModal() {
+      this.handleSignupClose();
+      this.signupSuccessModal = true;
+    },
+    submitSignupForm(enteredData) {
+      if (
+        this.validateEmailAndPassword(
+          enteredData.inputOne,
+          enteredData.inputTwo
+        )
+      ) {
+        var postData = {
+          email: enteredData.inputOne,
+          password: enteredData.inputTwo
+        };
+
+        axios
+          .post(
+            //for dev env:
+            "http://localhost:8080/register",
+            //"https://assignment-two-server.appspot.com/register",
+            postData
+          )
+          .then(res => {
+            console.log(res.data.msg);
+            if(res.status==200 && res.data.result=="Success"){
+              this.openSignupSuccessModal();
+            }
+            else{
+              this.errorMessage = res.data.msg;
+            }
+          })
+          .catch(err => {
+            if(err.response.data.ErrorCode && err.response.data.ErrorCode=="ER_DUP_ENTRY"){
+              this.errorMessage = "Error! Email already exists."
+            }
+            else{
+              this.errorMessage = (err.response.data.msg + " Please try again.");
+            }
+          });
+      }
+    },
+    submitLoginForm(enteredData) {
+      if (
+        this.validateEmailAndPassword(
+          enteredData.inputOne,
+          enteredData.inputTwo
+        )
+      ) {
+        console.log("Login Doesnt work yet");
+      }
     },
     handleLoginClose() {
       this.loginModalOpen = false;
     },
     handleSignupClose() {
       this.signupModalOpen = false;
+    },
+    handleSuccessSignupModalClose() {
+      this.signupSuccessModal = false;
     }
   },
   components: {
-    CustomModal
+    CustomModal,
+    CustomMessage
   }
 };
 </script>
@@ -90,7 +171,6 @@ export default {
   justify-content: flex-end;
   align-items: flex-start;
 }
-
 
 .fixed-header {
   align-self: center;

@@ -1,9 +1,6 @@
 <template>
   <div id="app">
-    <NavBar 
-      v-bind:btnOne="btnOne" 
-      v-bind:btnTwo="btnTwo" 
-    />
+    <NavBar v-bind:btnOne="btnOne" v-bind:btnTwo="btnTwo" />
     <ProductsContainer v-bind:products="products" />
   </div>
 </template>
