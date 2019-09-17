@@ -4,10 +4,11 @@ import Cart from "./components/Cart.vue";
 import ProductsContainer from "./components/ProductsContainer.vue";
 import Login from "./components/Login.vue";
 import Signup from "./components/Signup.vue";
+import store from "./store.js";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: "/cart",
@@ -17,7 +18,10 @@ export default new Router({
     {
       path: "/login",
       name: "login",
-      component: Login
+      component: Login,
+      // meta: {
+      //   loggedout: true
+      // }
     },
     {
       path: "/signup",
@@ -31,3 +35,4 @@ export default new Router({
     }
   ]
 });
+export default router;
