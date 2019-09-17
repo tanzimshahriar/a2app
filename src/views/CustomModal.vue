@@ -1,6 +1,5 @@
 <template>
   <div class="modalContainer">
-    <div class="close-btn" v-on:click="closeModal">Close Window</div>
     <div class="custom-modal">
       <div class="title">
         {{ this.title }}
@@ -88,9 +87,6 @@ export default {
     }
   },
   methods: {
-    closeModal() {
-      this.$emit("close");
-    },
     submitClicked() {
       this.$emit("submit", this.inputData);
     }
@@ -100,8 +96,11 @@ export default {
 
 <style scoped>
 .modalContainer {
+  display: flex;
+  justify-content: flex-start;
   height: 100%;
-  width: 100%;
+  flex-direction: column;
+  align-items: center;
 }
 .custom-modal {
   display: flex;
@@ -150,13 +149,6 @@ input[placeholder] {
   background: #42b983;
   color: white;
   font-weight: bolder;
-}
-.close-btn {
-  cursor: pointer;
-  padding: 10px;
-}
-.close-btn:hover {
-  color: #42b983;
 }
 .error-message {
   color: red;
