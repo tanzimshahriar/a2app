@@ -55,9 +55,14 @@ export default {
           email: enteredData.inputOne,
           password: enteredData.inputTwo
         };
-        this.$store.dispatch("retrieveToken", postData).then(res => {
-          this.$router.push("./");
-        });
+        this.$store
+          .dispatch("retrieveToken", postData)
+          .then(res => {
+            this.$router.push("./");
+          })
+          .catch(err => {
+            this.errorMessage = err.response.data.msg;
+          });
       }
     },
     handleLoginClose() {
