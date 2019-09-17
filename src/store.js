@@ -14,9 +14,6 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    setGlobalError(state, error) {
-      state.globalError = error;
-    },
     retrieveToken(state, token) {
       state.token = token;
     },
@@ -30,8 +27,8 @@ export default new Vuex.Store({
         axios
           .post(
             //for dev env:
-            "http://localhost:8080/login",
-            //"https://assignment-two-server.appspot.com/register",
+            //"http://localhost:8080/login",
+            "https://assignment-two-server.appspot.com/login",
             credentials
           )
           .then(res => {
@@ -41,6 +38,7 @@ export default new Vuex.Store({
             resolve(res);
           })
           .catch(err => {
+            //console.log(err.response);
             reject(err);
           });
       });

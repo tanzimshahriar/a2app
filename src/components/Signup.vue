@@ -83,7 +83,6 @@ export default {
             postData
           )
           .then(res => {
-            console.log(res.data.msg);
             if (res.status == 200 && res.data.result == "Success") {
               this.openSignupSuccessModal();
             } else {
@@ -92,10 +91,15 @@ export default {
           })
           .catch(err => {
             if (
-              err.response.data.ErrorCode &&
-              err.response.data.ErrorCode == "ER_DUP_ENTRY"
+              err.response.data.errorCode &&
+              err.response.data.errorCode == "ER_DUP_ENTRY"
             ) {
               this.errorMessage = "Error! Email already exists.";
+            } else if (
+              err.response.data.errorCode &&
+              err.response.data.errorCode == "VALIDATION_ERROR"
+            ) {
+              this.errorMessage = err.response.data.msg;
             } else {
               this.errorMessage = err.response.data.msg + " Please try again.";
             }
