@@ -10,11 +10,14 @@
         </div>
       </div>
       <div class="login-signup-container">
-        <div class="btn">
+        <div class="btn" v-if="!loggedIn">
           <router-link to="/login">Login</router-link>
         </div>
-        <div class="btn">
+        <div class="btn" v-if="!loggedIn">
           <router-link to="/signup">Signup</router-link>
+        </div>
+        <div class="btn" v-if="loggedIn">
+          <router-link to="/logout">Logout</router-link>
         </div>
       </div>
     </div>
@@ -33,6 +36,11 @@ export default {
     btnTwo: {
       type: String,
       required: true
+    }
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.getters.loggedIn;
     }
   }
 };
@@ -69,7 +77,7 @@ a {
 a:hover {
   color: #42b983;
 }
-.router-link-exact-active{
+.router-link-exact-active {
   color: #42b983;
 }
 #cart-btn {

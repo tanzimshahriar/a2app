@@ -15,7 +15,6 @@
 
 <script>
 import CustomModal from "../views/CustomModal";
-import axios from "axios";
 export default {
   name: "Login",
   data() {
@@ -32,6 +31,8 @@ export default {
       if (!this.isValidEmail(email)) {
         this.errorMessage = "*please enter a valid email";
         return false;
+      } else if (!password || password == "") {
+        this.errorMessage = "*please enter your password";
       } else {
         this.errorMessage = "";
         return true;
@@ -54,25 +55,9 @@ export default {
           email: enteredData.inputOne,
           password: enteredData.inputTwo
         };
-
-        axios
-          .post(
-            //for dev env:
-            "http://localhost:8080/login",
-            //"https://assignment-two-server.appspot.com/register",
-            postData
-          )
-          .then(res => {
-            console.log(res);
-            if (res.status == 200 && res.data.result == "Success") {
-              this.openSignupSuccessModal();
-            } else {
-              this.errorMessage = res.data.msg;
-            }
-          })
-          .catch(err => {
-            this.errorMessage = err.response.data.msg + " Please try again.";
-          });
+        this.$store.dispatch("retrieveToken", postData).then(res => {
+          this.$router.push("./");
+        });
       }
     },
     handleLoginClose() {
