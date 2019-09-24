@@ -1,24 +1,38 @@
 <template>
   <div>
     <Jumbotron></Jumbotron>
-    <div class="row-sm" v-for="(obj,key) in products" :key="key">
-      <div class="col-md-2">
+    <!-- <div class="row-sm" v-for="(obj,key) in products" :key="key">
+      <div class="col-md-2" v-for="(obj,key) in products" :key="key">
         <figure class="card card-product">
-          <div class="img-wrap" v-bind:src="obj.img"></div>
+          <div class="img-wrap" >
+            <img v-bind:src="obj.img">
+          </div>
           <figcaption class="info-wrap">
             <h6 class="title "><a href="#">{{obj.title}}</a></h6>
-            
             <div class="price-wrap">
               <span class="price-new">${{obj.price}}</span>
-      
-            </div> <!-- price-wrap.// -->
-            
+            </div>  
           </figcaption>
-        </figure> <!-- card // -->
-      </div> <!-- col // -->
-    </div> <!-- row.// -->
+        </figure> 
+      </div>  -->
+      
+      <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class=" col-lg-2 col-md-4 col-sm-4 " v-for="(obj,key) in products" :key="key">
+                  <img img v-bind:src="obj.img"> 
+                    <h5 class="card-title">{{obj.title}}</h5>
+                    <span class="price-new">${{obj.price}}</span>
+                    <p>{{obj.des}}</p>
+                    <button type = "button" class="btn btn-secondary btn-sm btn-block">Add to Cart</button>
+                    <br>
+                    <button type = "button" class="btn btn-success btn-sm btn-block">Buy Now</button>
+                    <br>
+            </div>
+        </div>
+      </div>
+      
 
-    <h1>Products</h1>
+    <!-- <h1>Products</h1>
     <div class="container">
       <div
         class="product-box"
@@ -27,7 +41,7 @@
       >
         <Product v-bind:product="product" />
       </div>
-    </div>
+    </div> -->
 
   </div>
 </template>
@@ -45,20 +59,37 @@ export default {
         {
           id: 1,
           title: "Product One",
-          price: "25$",
-          img: '../assets/images/apple11pro.jpg'
+          price: "25",
+          des: "Product Description",
+          img: '../assets/images/iphone11pro.jpg'
         },
         {
           id: 2,
           title: "Product Two",
-          price: "15$",
-          img:''
+          price: "15",
+          des: "Product Description",
+          img:'../assets/images/logo-white.png '
         },
         {
           id: 3,
           title: "Three",
-          price: "20$",
-          img:''
+          price: "20",
+          des: "Product Description",
+          img:'../assets/images/iphone11pro.jpg'
+        },
+          {
+          id: 4,
+          title: "Four",
+          price: "20",
+          des: "Product Description",
+          img:'../assets/images/iphone11pro.jpg'
+        },
+         {
+          id: 5,
+          title: "Five",
+          price: "20",
+          des: "Product Description",
+          img:'../assets/images/iphone11pro.jpg'
         }
       ]
     };
@@ -73,6 +104,14 @@ export default {
 </script>
 
 <style scoped>
+  .col-lg-2, .col-md-4, .col-sm-4{
+    border-style: solid;
+    border-color: rgb(202, 202, 202);
+    border-width: 1px;
+    margin-top: 20px;
+    margin-right: 20px;
+  }
+
 /* .container {
   padding-top: 10px;
   display: flex;
@@ -83,4 +122,5 @@ export default {
   display: block;
   padding: 10px; 
 } */
+
 </style>

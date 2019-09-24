@@ -2,7 +2,7 @@
   <div>
       <nav class="navbar navbar-landing navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-        <a class="navbar-brand mr-auto" href="#"> <img class="logo" src="images/logo-white.png"> LOGO</a>
+        <a class="navbar-brand mr-auto" href="#"> <img class="logo" src=""> E-Commerce</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -23,12 +23,20 @@
               <li class="nav-item">
                 <router-link class="nav-link" to="/"> Ipad </router-link>
               </li>
+              <li class="nav-item" v-if="!loggedIn">
+                <router-link class="nav-link" to="/Login"> Login </router-link>
+              </li>
+              <li class="nav-item" v-if="!loggedIn">
+                <router-link class="nav-link" to="/signup"> Signup </router-link>
+              </li>
+            
             </ul>
+            
           </div>
            <Search></Search>
         </div> <!-- container //  -->
     </nav>
-    <div id="nav">
+    <!-- <div id="nav">
       <div class="home-cart-container">
         <div class="btn">
           <router-link to="/">Home</router-link>
@@ -48,7 +56,7 @@
           <router-link to="/logout">Logout</router-link>
         </div>
       </div>
-    </div>
+    </div> -->
     <router-view />
   </div>
   
@@ -95,13 +103,13 @@ export default {
   display: flex;
   align-self: flex-end;
 }
-.btn {
+/* .btn {
   align-self: flex-end;
   color: #2c3e50;
   padding: 10px;
   text-decoration: none;
   cursor: pointer;
-}
+} */
 a {
   color: #2c3e50;
   font-weight: lighter;
@@ -137,7 +145,7 @@ a:hover {
 
 }
 .navbar-expand-lg .navbar-collapse{
-  background-color: green;
+  
   width: auto 100%;
 }
 

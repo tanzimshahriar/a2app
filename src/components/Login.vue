@@ -1,7 +1,7 @@
 <template>
   <div class="loginContainer">
     <CustomModal
-      title="Login"
+  
       btnLabel="LOGIN"
       firstInputLabel="Enter Your Email"
       secondInputLabel="Enter Your Password"

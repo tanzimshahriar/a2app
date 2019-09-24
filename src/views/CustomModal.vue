@@ -1,6 +1,9 @@
 <template>
   <div class="modalContainer">
     <div class="custom-modal">
+      <div class="loginHeader">
+        <p id="signIn">Sign In</p>
+      </div>
       <div class="title">
         {{ this.title }}
       </div>
@@ -17,11 +20,17 @@
           v-model="inputData.inputTwo"
           ref="inputTwo"
         />
+        <br>
+        <br>
+        <br>
+        <br>
         <div class="submit-btn-container">
           <div class="submit-btn" v-on:click="submitClicked">
             {{ this.placeholderThree }}
           </div>
         </div>
+        <br>
+        <br>
         <div class="error-message">{{ this.errorMessage }}</div>
       </div>
     </div>
@@ -98,16 +107,27 @@ export default {
 .modalContainer {
   display: flex;
   justify-content: flex-start;
-  height: 100%;
+  height: 1000px;
   flex-direction: column;
   align-items: center;
+  
+}
+#signIn{
+  margin-top: 32px;
+  
 }
 .custom-modal {
   display: flex;
+  background: rgb(255, 255, 255);
+  width: 500px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 50%;
+  margin-top: 50px;
+  border-radius: 20px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.10);
+
 }
 .title {
   font-size: 35px;
@@ -119,24 +139,35 @@ export default {
   justify-content: flex-start;
   padding-top: 15px;
   align-items: center;
+  margin-bottom: 100px;
 }
 input {
   margin-bottom: 5px;
   margin-top: 5px;
-  height: 30px;
-  width: 250px;
+  height: 50px;
+  width: 350px;
+  border-radius: 30px;
+  background-color: rgb(240, 240, 240);
+  border:1px solid rgb(253, 253, 253);
+}
+input:focus{
+  outline: none !important;
+
+}
+input:hover{
+  
+  background-color: rgb(255, 254, 221);
+  
 }
 input[placeholder] {
   text-align: center;
 }
 .submit-btn-container {
-  margin-bottom: 5px;
-  margin-top: 5px;
   height: 30px;
-  width: 250px;
+  width: 350px;
   cursor: pointer;
-  border-style: solid;
-  border-width: 2px;
+  border-radius: 20px;
+ 
 }
 .submit-btn {
   display: flex;
@@ -144,14 +175,35 @@ input[placeholder] {
   justify-content: center;
   height: 100%;
   width: 100%;
+  background-color:  rgb(197, 162, 67);
+  border-radius: 20px;
+  height: 50px;
+  width: 350px;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  
+  
 }
 .submit-btn:hover {
-  background: #42b983;
+ 
   color: white;
   font-weight: bolder;
+}
+.loginHeader{
+  height: 100px;
+  background-color: rgb(197, 162, 67);
+  width: 100%;
+  margin-bottom: auto;
+  color: white;
+  font-weight: bold;
+  font-size: 1.7rem;
+  border-radius: 20px 20px 0px 0px;
 }
 .error-message {
   color: red;
   font-size: 10px;
+
+
 }
 </style>
