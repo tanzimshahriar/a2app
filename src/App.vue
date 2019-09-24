@@ -1,11 +1,13 @@
 <template>
   <div id="app">
     <NavBar v-bind:btnOne="btnOne" v-bind:btnTwo="btnTwo" />
+
   </div>
 </template>
 
 <script>
 import NavBar from "./components/NavBar";
+
 export default {
   name: "app",
   components: {
@@ -31,4 +33,5 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+
 </style>

@@ -1,5 +1,33 @@
 <template>
   <div>
+      <nav class="navbar navbar-landing navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+        <a class="navbar-brand mr-auto" href="#"> <img class="logo" src="images/logo-white.png"> LOGO</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar1">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <router-link class="nav-link page-scroll" to="/">Home</router-link>
+              </li>
+              <li class="nav-item">
+                <router-link class="nav-link page-scroll" to="cart">Cart</router-link>
+              </li>
+              <li class="nav-item">
+                <router-link class="nav-link page-scroll" to="/">Smnartphones</router-link>
+              </li>
+              <li class="nav-item">
+                <router-link class="nav-link page-scroll" to="/">Laptops</router-link>
+              </li>
+              <li class="nav-item">
+                <router-link class="nav-link" to="/"> Ipad </router-link>
+              </li>
+            </ul>
+          </div>
+           <Search></Search>
+        </div> <!-- container //  -->
+    </nav>
     <div id="nav">
       <div class="home-cart-container">
         <div class="btn">
@@ -23,11 +51,16 @@
     </div>
     <router-view />
   </div>
+  
 </template>
 
 <script>
+import Search from "./Search";
 export default {
   name: "NavBar",
+  components: {
+    Search
+  },
   props: {
     btnOne: {
       type: String,
@@ -91,4 +124,22 @@ a:hover {
   width: 100%;
   background: white;
 }
+.navbar-dark .navbar-nav .nav-link{
+  color: rgb(212, 212, 212);
+}
+.navbar-dark .navbar-nav .nav-link:hover{
+  color: rgb(255, 255, 255);
+}
+.ml-auto, .mx-auto {
+  margin-left: 40% !important;
+  margin-right: 40%;
+  
+
+}
+.navbar-expand-lg .navbar-collapse{
+  background-color: green;
+  width: auto 100%;
+}
+
+
 </style>
