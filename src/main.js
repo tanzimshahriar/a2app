@@ -5,31 +5,37 @@ import store from "./store";
 
 Vue.config.productionTip = false;
 
+
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    // this route requires auth, check if logged in
-    // if not, redirect to login page.
-    if (!store.getters.loggedIn()) {
+  console.log(`navigating to ${to.name} from ${from.name}`)
+  if(to.matched.some(route => route.meta.requiresLoggedOut)) {
+    if(!store.getters.loggedIn){
+      next()
+    } else{
       next({
-        name: "/login"
-      });
-    } else {
-      next();
+        name: 'home'
+      })
     }
-  } else if (to.matched.some(record => record.meta.loggedOut)) {
-    // this route requires loggedOut, check if logged out
-    // if not, redirect to home page.
-    if (!store.getters.loggedIn()) {
-      next({
-        name: "/home"
-      });
-    } else {
-      next();
-    }
-  } else {
-    next(); // make sure to always call next()!
   }
-});
+  else{
+    next(); 
+  }
+})
+
+
+// router.beforeEach((to, from, next) => {
+//   const loggedIn = store.getters.loggedIn;
+//   const onlyLoggedOut = to.matched.some(record => record.meta.onlyLoggedOut);
+//   const onlyPublic = to.matched.some(record => record.meta.public)
+
+//   if(!onlyPublic && !loggedIn) {
+//     //requires auth, redirect to login page
+//     return next({
+//       path: '/login',
+//       query: { redirect: to.fullPath }
+//     })
+//   }
+// });
 
 new Vue({
   router,

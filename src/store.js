@@ -6,19 +6,22 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    token: localStorage.getItem("access_token") || null
+    user: {
+      token: localStorage.getItem("access_token") || null,
+      verified: false
+    }
   },
   getters: {
     loggedIn(state) {
-      return state.token == null ? false : true;
+      return state.user.token == null ? false : true;
     }
   },
   mutations: {
     retrieveToken(state, token) {
-      state.token = token;
+      state.user.token = token;
     },
     destroyToken(state) {
-      state.token = null;
+      state.user.token = null;
     }
   },
   actions: {
@@ -27,8 +30,8 @@ export default new Vuex.Store({
         axios
           .post(
             //for dev env:
-            //"http://localhost:8080/login",
-            "https://assignment-two-server.appspot.com/login",
+            "http://localhost:8080/login",
+            //"https://assignment-two-server.appspot.com/login",
             credentials
           )
           .then(res => {
