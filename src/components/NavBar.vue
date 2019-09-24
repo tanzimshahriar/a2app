@@ -2,10 +2,10 @@
   <div>
     <div id="nav">
       <div class="home-cart-container">
-        <div class="btn">
+        <div class="btn" v-if="emailVerified">
           <router-link to="/">Home</router-link>
         </div>
-        <div class="btn">
+        <div class="btn" v-if="emailVerified">
           <router-link id="cart-btn" to="/cart">Cart</router-link>
         </div>
       </div>
@@ -41,6 +41,9 @@ export default {
   computed: {
     loggedIn() {
       return this.$store.getters.loggedIn;
+    },
+    emailVerified() {
+      return this.$store.state.user.accountVerified;
     }
   }
 };

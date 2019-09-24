@@ -1,13 +1,25 @@
 <template>
   <div>
-    <h1>Products</h1>
-    <div class="container">
-      <div
-        class="product-box"
-        v-bind:key="product.id"
-        v-for="product in products"
-      >
-        <Product v-bind:product="product" />
+    <div v-if="unverified">
+      <CustomMessage
+        title="Verify Your Email to continue"
+        message="A confirmation code has been sent to your email. Please enter the confirmation code."
+      />
+      <form>
+        <input type="text" placeholder="Verification Code" />
+        <input value="Submit" type="submit" />
+      </form>
+    </div>
+    <div v-else>
+      <h1>Products</h1>
+      <div class="container">
+        <div
+          class="product-box"
+          v-bind:key="product.id"
+          v-for="product in products"
+        >
+          <Product v-bind:product="product" />
+        </div>
       </div>
     </div>
   </div>
@@ -15,6 +27,8 @@
 
 <script>
 import Product from "./Product";
+import CustomMessage from "../views/customMessage";
+import axios from "axios";
 export default {
   name: "ProductsContainer",
   data: function() {
@@ -39,7 +53,13 @@ export default {
     };
   },
   components: {
-    Product
+    Product,
+    CustomMessage
+  },
+  computed: {
+    unverified() {
+      return !this.$store.state.user.accountVerified;
+    }
   }
 };
 </script>

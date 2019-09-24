@@ -5,23 +5,19 @@ import store from "./store";
 
 Vue.config.productionTip = false;
 
-
 router.beforeEach((to, from, next) => {
-  console.log(`navigating to ${to.name} from ${from.name}`)
-  if(to.matched.some(route => route.meta.requiresLoggedOut)) {
-    if(!store.getters.loggedIn){
-      next()
-    } else{
+  if (to.matched.some(route => route.meta.requiresLoggedOut)) {
+    if (!store.getters.loggedIn) {
+      next();
+    } else {
       next({
-        name: 'home'
-      })
+        name: "home"
+      });
     }
+  } else {
+    next();
   }
-  else{
-    next(); 
-  }
-})
-
+});
 
 // router.beforeEach((to, from, next) => {
 //   const loggedIn = store.getters.loggedIn;
@@ -43,8 +39,8 @@ new Vue({
   render: h => h(App)
 }).$mount("#app");
 
-if (process.env.MIX_APP_ENV === 'production') {
+if (process.env.MIX_APP_ENV === "production") {
   Vue.config.devtools = false;
   Vue.config.debug = false;
-  Vue.config.silent = true; 
+  Vue.config.silent = true;
 }
