@@ -107,7 +107,8 @@ export default {
 .modalContainer {
   display: flex;
   justify-content: flex-start;
-  height: 1000px;
+  height: auto;
+  width: 100% auto;
   flex-direction: column;
   align-items: center;
   
@@ -119,11 +120,12 @@ export default {
 .custom-modal {
   display: flex;
   background: rgb(255, 255, 255);
-  width: 500px;
+  width: auto;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 50%;
+  height: auto;
+  margin-bottom: 5px;
   margin-top: 50px;
   border-radius: 20px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.10);

@@ -61,35 +61,35 @@ export default {
           title: "Product One",
           price: "25",
           des: "Product Description",
-          img: '../assets/images/iphone11pro.jpg'
+          img: require('../assets/images/iphone11pro.jpg')
         },
         {
           id: 2,
           title: "Product Two",
           price: "15",
           des: "Product Description",
-          img:'../assets/images/logo-white.png '
+          img:require('../assets/images/iphone11pro.jpg')
         },
         {
           id: 3,
           title: "Three",
           price: "20",
           des: "Product Description",
-          img:'../assets/images/iphone11pro.jpg'
+          img:require('../assets/images/iphone11pro.jpg')
         },
           {
           id: 4,
           title: "Four",
           price: "20",
           des: "Product Description",
-          img:'../assets/images/iphone11pro.jpg'
+          img:require('../assets/images/iphone11pro.jpg')
         },
          {
           id: 5,
           title: "Five",
           price: "20",
           des: "Product Description",
-          img:'../assets/images/iphone11pro.jpg'
+          img: require('../assets/images/iphone11pro.jpg')
         }
       ]
     };
@@ -110,6 +110,13 @@ export default {
     border-width: 1px;
     margin-top: 20px;
     margin-right: 20px;
+    width: auto;
+    height:auto;
+  }
+  .img{
+    width: 10px;
+    height: 10px;
+    background-color: red;
   }
 
 /* .container {
