@@ -15,14 +15,14 @@ router.beforeEach((to, from, next) => {
         name: "home"
       });
     }
-  } else if (store.getters.loggedIn && to.matched.some(route => route.meta.requiresAccountVerified)){
-    if (store.state.user.accountVerified){
-      next();
-    }
-    else {
+  } else if (to.matched.some(route => route.meta.requiresAccountVerified)){
+    if (store.getters.showUnverifiedAccountMessages){
       next({
         name: "home"
       });
+    }
+    else {
+      next();
     }
   } else {
     next();

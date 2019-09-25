@@ -14,6 +14,19 @@ export default new Vuex.Store({
   getters: {
     loggedIn(state) {
       return state.user.token == null ? false : true;
+    },
+    showUnverifiedAccountMessages(state) {
+      if(state.user.accountVerified == null){
+        return false;
+      }
+      else {
+        if(!state.user.accountVerified && (state.user.token == null ? false : true)) {
+          return false;
+        }
+        else{
+          return true;
+        }
+      }
     }
   },
   mutations: {

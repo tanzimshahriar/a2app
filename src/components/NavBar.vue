@@ -2,10 +2,10 @@
   <div>
     <div id="nav">
       <div class="home-cart-container">
-        <div class="btn" v-if="emailVerified">
+        <div class="btn" v-if="unverified">
           <router-link to="/">Home</router-link>
         </div>
-        <div class="btn" v-if="emailVerified">
+        <div class="btn" v-if="unverified">
           <router-link id="cart-btn" to="/cart">Cart</router-link>
         </div>
       </div>
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { isNullOrUndefined } from 'util';
 export default {
   name: "NavBar",
   props: {
@@ -42,8 +43,8 @@ export default {
     loggedIn() {
       return this.$store.getters.loggedIn;
     },
-    emailVerified() {
-      return this.$store.state.user.accountVerified;
+    unverified() {
+        return this.$store.getters.showUnverifiedAccountMessages;
     }
   }
 };
