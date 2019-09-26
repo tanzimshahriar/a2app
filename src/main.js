@@ -11,28 +11,25 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 Vue.config.productionTip = false;
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    // this route requires auth, check if logged in
-    // if not, redirect to login page.
-    if (!store.getters.loggedIn()) {
-      next({
-        name: "/login"
-      });
-    } else {
+  //console.log(`navigating to ${to.name} from ${from.name}`);
+  if (to.matched.some(route => route.meta.requiresLoggedOut)) {
+    if (!store.getters.loggedIn) {
       next();
-    }
-  } else if (to.matched.some(record => record.meta.loggedOut)) {
-    // this route requires loggedOut, check if logged out
-    // if not, redirect to home page.
-    if (!store.getters.loggedIn()) {
-      next({
-        name: "/home"
-      });
     } else {
-      next();
+      next({
+        name: "home"
+      });
     }
+    // } else if (to.matched.some(route => route.meta.requiresAccountVerifiedWhenLoggedIn)) {
+    //   if (store.getters.dontShowUnverifiedAccountMessages) {
+    //     next();
+    //   } else {
+    //     next({
+    //       name: "home"
+    //     });
+    //   }
   } else {
-    next(); // make sure to always call next()!
+    next();
   }
 });
 
@@ -42,8 +39,8 @@ new Vue({
   render: h => h(App)
 }).$mount("#app");
 
-if (process.env.MIX_APP_ENV === 'production') {
+if (process.env.MIX_APP_ENV === "production") {
   Vue.config.devtools = false;
   Vue.config.debug = false;
-  Vue.config.silent = true; 
+  Vue.config.silent = true;
 }

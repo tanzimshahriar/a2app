@@ -40,8 +40,10 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: left;
   height: 30%;
-  margin: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
 }
 .title {
   font-size: 35px;
@@ -50,7 +52,6 @@ export default {
 .message {
   font-size: 25px;
   font-weight: lighter;
-  margin: 20px;
-  padding-top: 10px;
+  padding-top: 15px;
 }
 </style>

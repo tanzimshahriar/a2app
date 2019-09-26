@@ -38,21 +38,27 @@
     </nav>
     <!-- <div id="nav">
       <div class="home-cart-container">
-        <div class="btn">
+        <div
+          class="btn"
+          v-if="!(this.$props.showUnverifiedButtons && this.$props.loggedIn)"
+        >
           <router-link to="/">Home</router-link>
         </div>
-        <div class="btn">
+        <div
+          class="btn"
+          v-if="!(this.$props.showUnverifiedButtons && this.$props.loggedIn)"
+        >
           <router-link id="cart-btn" to="/cart">Cart</router-link>
         </div>
       </div>
       <div class="login-signup-container">
-        <div class="btn" v-if="!loggedIn">
+        <div class="btn" v-if="!this.$props.loggedIn">
           <router-link to="/login">Login</router-link>
         </div>
-        <div class="btn" v-if="!loggedIn">
+        <div class="btn" v-if="!this.$props.loggedIn">
           <router-link to="/signup">Signup</router-link>
         </div>
-        <div class="btn" v-if="loggedIn">
+        <div class="btn" v-if="this.$props.loggedIn">
           <router-link to="/logout">Logout</router-link>
         </div>
       </div>
@@ -77,11 +83,22 @@ export default {
     btnTwo: {
       type: String,
       required: true
+    },
+    showUnverifiedButtons: {
+      type: Boolean,
+      required: true
+    },
+    loggedIn: {
+      type: Boolean,
+      required: true
     }
   },
-  computed: {
-    loggedIn() {
-      return this.$store.getters.loggedIn;
+  watch: {
+    showUnverifiedButtons: function(newProp) {
+      this.showUnverifiedButtons = newProp;
+    },
+    loggedIn: function(newProp) {
+      this.loggedIn = newProp;
     }
   }
 };

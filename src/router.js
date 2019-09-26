@@ -5,7 +5,6 @@ import ProductsContainer from "./components/ProductsContainer.vue";
 import Login from "./components/Login.vue";
 import Signup from "./components/Signup.vue";
 import Logout from "./components/Logout.vue";
-// import store from "./store.js";
 
 Vue.use(Router);
 
@@ -21,25 +20,28 @@ const router = new Router({
       name: "login",
       component: Login,
       meta: {
-        loggedout: true
+        requiresLoggedOut: true
       }
     },
     {
       path: "/signup",
       name: "signup",
-      component: Signup
+      component: Signup,
+      meta: {
+        requiresLoggedOut: true
+      }
     },
-    {
-      path: "/",
-      name: "home",
-      component: ProductsContainer
-    },
+    // {
+    //   path: "/",
+    //   name: "home",
+    //   component: ProductsContainer
+    // },
     {
       path: "/logout",
       name: "logout",
       component: Logout,
       meta: {
-        loggedout: true
+        requiresLoggedOut: false
       }
     }
   ]
