@@ -6,21 +6,19 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    user: {
-      token: localStorage.getItem("access_token") || null
-    }
+    token: localStorage.getItem("access_token") || null
   },
   getters: {
     loggedIn(state) {
-      return state.user.token == null ? false : true;
+      return state.token == null ? false : true;
     }
   },
   mutations: {
     retrieveToken(state, token) {
-      state.user.token = token;
+      state.token = token;
     },
     destroyToken(state) {
-      state.user.token = null;
+      state.token = null;
     }
   },
   actions: {

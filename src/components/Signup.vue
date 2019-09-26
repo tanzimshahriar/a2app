@@ -77,9 +77,9 @@ export default {
 
         axios
           .post(
-            "https://assignment-two-server.appspot.com/register",
+            //for dev env:
             //"http://localhost:8080/register",
-
+            "https://assignment-two-server.appspot.com/register",
             postData
           )
           .then(res => {
