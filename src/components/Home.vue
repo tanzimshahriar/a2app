@@ -11,7 +11,6 @@
 <script>
 import axios from "axios";
 import ProductsContainer from "./ProductsContainer";
-import config from "../../vue.config";
 
 export default {
   name: "app",
@@ -37,7 +36,7 @@ export default {
   },
   methods: {
     checkIfUserVerificationhouldBeShowed() {
-      const url = config.mode == "production" ? "https://assignment-two-server.appspot.com/user/getverificationstatus"
+      const url = process.env.NODE_ENV == "production" ? "https://assignment-two-server.appspot.com/user/getverificationstatus"
       : "http://localhost:8080/user/getverificationstatus";
       if (this.$store.getters.loggedIn) {
         axios

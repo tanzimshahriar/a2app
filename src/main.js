@@ -36,7 +36,7 @@ new Vue({
   render: h => h(App)
 }).$mount("#app");
 
-if (config.mode == "production") {
+if (process.env.NODE_ENV == "production") {
   Vue.config.devtools = false;
   Vue.config.debug = false;
   Vue.config.silent = true;

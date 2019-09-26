@@ -27,7 +27,7 @@
 import CustomModal from "../views/CustomModal";
 import CustomMessage from "../views/customMessage";
 import axios from "axios";
-import config from "../../vue.config";
+
 export default {
   name: "",
   data() {
@@ -76,7 +76,7 @@ export default {
           password: enteredData.inputTwo
         };
 
-        const url = config.mode == "production" ? "https://assignment-two-server.appspot.com/register"
+        const url = process.env.NODE_ENV == "production" ? "https://assignment-two-server.appspot.com/register"
         : "http://localhost:8080/register";
         axios
           .post(

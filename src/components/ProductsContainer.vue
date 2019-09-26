@@ -36,7 +36,7 @@
 import Product from "./Product";
 import CustomMessage from "../views/customMessage";
 import axios from "axios";
-import config from "../../vue.config";
+
 export default {
   name: "ProductsContainer",
   props: {
@@ -89,7 +89,7 @@ export default {
       if (this.verificationCodeEntered != "") {
         this.showErrorMessage = false;
         this.errorMessage = "";
-        const url = config.mode == "production" ? "https://assignment-two-server.appspot.com/user/verifyuser"
+        const url = process.env.NODE_ENV == "production" ? "https://assignment-two-server.appspot.com/user/verifyuser"
         : "http://localhost:8080/user/verifyuser";
         const data = {
           secretToken: this.verificationCodeEntered

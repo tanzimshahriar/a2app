@@ -1,7 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
-import config from "../vue.config";
 
 Vue.use(Vuex);
 
@@ -28,7 +27,7 @@ export default new Vuex.Store({
   actions: {
     retrieveToken(context, credentials) {
       return new Promise((resolve, reject) => {
-        const url = config.mode == "production" ? "https://assignment-two-server.appspot.com/login"
+        const url = process.env.NODE_ENV == "production" ? "https://assignment-two-server.appspot.com/login"
         : "http://localhost:8080/login";
         axios
           .post(
