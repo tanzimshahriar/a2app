@@ -36,6 +36,7 @@
 import Product from "./Product";
 import CustomMessage from "../views/customMessage";
 import axios from "axios";
+import config from "../../vue.config";
 export default {
   name: "ProductsContainer",
   props: {
@@ -88,15 +89,15 @@ export default {
       if (this.verificationCodeEntered != "") {
         this.showErrorMessage = false;
         this.errorMessage = "";
-
+        const url = config.mode == "production" ? "https://assignment-two-server.appspot.com/user/verifyuser"
+        : "http://localhost:8080/user/verifyuser";
         const data = {
           secretToken: this.verificationCodeEntered
         };
 
         //make the api call
         axios
-          .post("https://assignment-two-server.appspot.com/user/verifyuser", data, {
-          //.post("http://localhost:8080/user/verifyuser", data, {
+          .post(url, data, {
             headers: {
               "Content-Type": "application/json",
               "auth-token": this.$store.state.user.token

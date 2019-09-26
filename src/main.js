@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import config from "../vue.config";
 
 Vue.config.productionTip = false;
 
@@ -35,7 +36,7 @@ new Vue({
   render: h => h(App)
 }).$mount("#app");
 
-if (process.env.MIX_APP_ENV === "production") {
+if (config.mode == "production") {
   Vue.config.devtools = false;
   Vue.config.debug = false;
   Vue.config.silent = true;

@@ -11,6 +11,7 @@
 <script>
 import axios from "axios";
 import ProductsContainer from "./ProductsContainer";
+import config from "../../vue.config";
 
 export default {
   name: "app",
@@ -36,10 +37,11 @@ export default {
   },
   methods: {
     checkIfUserVerificationhouldBeShowed() {
+      const url = config.mode == "production" ? "https://assignment-two-server.appspot.com/user/getverificationstatus"
+      : "http://localhost:8080/user/getverificationstatus";
       if (this.$store.getters.loggedIn) {
         axios
-          .get("https://assignment-two-server.appspot.com/user/getverificationstatus", {
-          //.get("http://localhost:8080/user/getverificationstatus", {
+          .get(url, {
             headers: {
               "Content-Type": "application/json",
               "auth-token": this.$store.state.user.token
