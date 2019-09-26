@@ -38,8 +38,8 @@ export default {
     checkIfUserVerificationhouldBeShowed() {
       if (this.$store.getters.loggedIn) {
         axios
-          //.get("https://assignment-two-server.appspot.com/user/getverificationstatus", {
-          .get("http://localhost:8080/user/getverificationstatus", {
+          .get("https://assignment-two-server.appspot.com/user/getverificationstatus", {
+          //.get("http://localhost:8080/user/getverificationstatus", {
             headers: {
               "Content-Type": "application/json",
               "auth-token": this.$store.state.user.token
