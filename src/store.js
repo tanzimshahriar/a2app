@@ -8,7 +8,8 @@ export default new Vuex.Store({
   state: {
     user: {
       token: localStorage.getItem("access_token") || null
-    }
+    },
+    showUnverified: false
   },
   getters: {
     loggedIn(state) {
@@ -29,8 +30,8 @@ export default new Vuex.Store({
         axios
           .post(
             //for dev env:
-            //"http://localhost:8080/login",
-            "https://assignment-two-server.appspot.com/login",
+            "http://localhost:8080/login",
+            //"https://assignment-two-server.appspot.com/login",
             credentials
           )
           .then(res => {

@@ -95,9 +95,8 @@ export default {
 
         //make the api call
         axios
-          .post("https://assignment-two-server.appspot.com/user/verifyuser",
-          //.post("http://localhost:8080/user/verifyuser", 
-            data, {
+          //.post("https://assignment-two-server.appspot.com/user/verifyuser",
+          .post("http://localhost:8080/user/verifyuser", data, {
             headers: {
               "Content-Type": "application/json",
               "auth-token": this.$store.state.user.token

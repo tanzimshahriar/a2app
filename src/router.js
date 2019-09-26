@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Cart from "./components/Cart.vue";
-import ProductsContainer from "./components/ProductsContainer.vue";
+import Home from "./components/Home.vue";
 import Login from "./components/Login.vue";
 import Signup from "./components/Signup.vue";
 import Logout from "./components/Logout.vue";
@@ -13,7 +13,10 @@ const router = new Router({
     {
       path: "/cart",
       name: "cart",
-      component: Cart
+      component: Cart,
+      meta: {
+        requiresAccountVerifiedWhenLoggedIn: true
+      }
     },
     {
       path: "/login",
@@ -31,11 +34,11 @@ const router = new Router({
         requiresLoggedOut: true
       }
     },
-    // {
-    //   path: "/",
-    //   name: "home",
-    //   component: ProductsContainer
-    // },
+    {
+      path: "/",
+      name: "home",
+      component: Home
+    },
     {
       path: "/logout",
       name: "logout",
