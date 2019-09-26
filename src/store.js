@@ -29,8 +29,8 @@ export default new Vuex.Store({
         axios
           .post(
             //for dev env:
-            "http://localhost:8080/login",
-            //"https://assignment-two-server.appspot.com/login",
+            //"http://localhost:8080/login",
+            "https://assignment-two-server.appspot.com/login",
             credentials
           )
           .then(res => {
