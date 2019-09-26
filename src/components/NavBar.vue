@@ -2,10 +2,16 @@
   <div>
     <div id="nav">
       <div class="home-cart-container">
-        <div class="btn" v-if="!(this.$props.showUnverifiedButtons && this.$props.loggedIn)">
+        <div
+          class="btn"
+          v-if="!(this.$props.showUnverifiedButtons && this.$props.loggedIn)"
+        >
           <router-link to="/">Home</router-link>
         </div>
-        <div class="btn" v-if="!(this.$props.showUnverifiedButtons && this.$props.loggedIn)">
+        <div
+          class="btn"
+          v-if="!(this.$props.showUnverifiedButtons && this.$props.loggedIn)"
+        >
           <router-link id="cart-btn" to="/cart">Cart</router-link>
         </div>
       </div>
@@ -53,7 +59,7 @@ export default {
     loggedIn: function(newProp) {
       this.loggedIn = newProp;
     }
-  },
+  }
 };
 </script>
 

@@ -7,7 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     user: {
-      token: localStorage.getItem("access_token") || null,
+      token: localStorage.getItem("access_token") || null
     }
   },
   getters: {
@@ -35,7 +35,6 @@ export default new Vuex.Store({
           )
           .then(res => {
             const token = res.data.token;
-            const result = res.data.result;
             localStorage.setItem("access_token", token);
             context.commit("retrieveToken", token);
             resolve(res);

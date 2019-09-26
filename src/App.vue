@@ -6,15 +6,15 @@
       v-bind:showUnverifiedButtons="showUnverifiedToChild"
       v-bind:loggedIn="userLoggedIn"
     />
-    <ProductsContainer 
-      v-bind:showUnverified="showUnverifiedToChild" 
+    <ProductsContainer
+      v-bind:showUnverified="showUnverifiedToChild"
       v-bind:loggedIn="userLoggedIn"
+      @userJustVerified="userVerificationDone"
     />
   </div>
 </template>
 
 <script>
-import Vue from "vue";
 import axios from "axios";
 import NavBar from "./components/NavBar";
 import ProductsContainer from "./components/ProductsContainer";
@@ -35,7 +35,7 @@ export default {
   },
   watch: {
     userLoggedIn(newValue, oldValue) {
-      this.loggedIn = newValue 
+      this.loggedIn = newValue;
     }
   },
   mounted() {
@@ -71,6 +71,10 @@ export default {
         this.showUnverified = false;
       }
     },
+    userVerificationDone() {
+      //todo: vanlal show a popup alert using bootstrap saying "Thanks for verifying your email"
+      this.checkIfUserVerificationhouldBeShowed();
+    }
   },
   computed: {
     showUnverifiedToChild() {
