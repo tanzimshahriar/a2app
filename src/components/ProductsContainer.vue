@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="unverified">
+    <div v-if="this.$props.showUnverified && this.$props.loggedIn">
       <CustomMessage
         title="Verify Your Email to continue"
         message="A confirmation code has been sent to your email. Please enter the confirmation code."
@@ -13,11 +13,7 @@
     <div v-else>
       <h1>Products</h1>
       <div class="container">
-        <div
-          class="product-box"
-          v-bind:key="product.id"
-          v-for="product in products"
-        >
+        <div class="product-box" v-bind:key="product.id" v-for="product in products">
           <Product v-bind:product="product" />
         </div>
       </div>
@@ -30,6 +26,24 @@ import Product from "./Product";
 import CustomMessage from "../views/customMessage";
 import axios from "axios";
 export default {
+  props: {
+    showUnverified: {
+      type: Boolean,
+      required: true
+    },
+    loggedIn: {
+      type: Boolean, 
+      required: true
+    }
+  },
+  watch: {
+    showUnverified: function(newProp) {
+      this.showUnverified = newProp;
+    },
+    loggedIn: function(newProp) {
+      this.loggedIn = newProp;
+    }
+  },
   name: "ProductsContainer",
   data: function() {
     return {
@@ -55,11 +69,6 @@ export default {
   components: {
     Product,
     CustomMessage
-  },
-  computed: {
-    unverified() {
-      return !this.$store.state.user.accountVerified;
-    }
   }
 };
 </script>

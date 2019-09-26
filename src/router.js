@@ -13,10 +13,7 @@ const router = new Router({
     {
       path: "/cart",
       name: "cart",
-      component: Cart,
-      meta: {
-        requiresAccountVerified: true
-      }
+      component: Cart
     },
     {
       path: "/login",
@@ -34,11 +31,11 @@ const router = new Router({
         requiresLoggedOut: true
       }
     },
-    {
-      path: "/",
-      name: "home",
-      component: ProductsContainer,
-    },
+    // {
+    //   path: "/",
+    //   name: "home",
+    //   component: ProductsContainer
+    // },
     {
       path: "/logout",
       name: "logout",

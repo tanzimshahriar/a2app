@@ -8,42 +8,19 @@ export default new Vuex.Store({
   state: {
     user: {
       token: localStorage.getItem("access_token") || null,
-      accountVerified: null
     }
   },
   getters: {
     loggedIn(state) {
       return state.user.token == null ? false : true;
-    },
-    showUnverifiedAccountMessages(state) {
-      if(state.user.accountVerified == null){
-        return false;
-      }
-      else {
-        if(!state.user.accountVerified && (state.user.token == null ? false : true)) {
-          return false;
-        }
-        else{
-          return true;
-        }
-      }
     }
   },
   mutations: {
     retrieveToken(state, token) {
       state.user.token = token;
     },
-    retrieveUserAccountVerificationStatus(state, result) {
-      if (result == "Unverified") {
-        console.log("epicly unverified");
-        state.user.accountVerified = false;
-      } else {
-        state.user.accountVerified = true;
-      }
-    },
-    destroyTokenAndAccountVerified(state) {
+    destroyToken(state) {
       state.user.token = null;
-      state.user.accountVerified = null;
     }
   },
   actions: {
@@ -61,7 +38,6 @@ export default new Vuex.Store({
             const result = res.data.result;
             localStorage.setItem("access_token", token);
             context.commit("retrieveToken", token);
-            context.commit("retrieveUserAccountVerificationStatus", result);
             resolve(res);
           })
           .catch(err => {
@@ -73,7 +49,7 @@ export default new Vuex.Store({
     destroyToken(context) {
       if (context.getters.loggedIn) {
         localStorage.removeItem("access_token");
-        context.commit("destroyTokenAndAccountVerified");
+        context.commit("destroyToken");
       }
     }
   }
