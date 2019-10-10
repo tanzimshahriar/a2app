@@ -1,6 +1,5 @@
 <template>
   <div>
-<<<<<<< HEAD
     <div v-if="this.$props.showUnverified && this.$props.loggedIn">
       <CustomMessage
         title="Verify Your Email to continue"
@@ -28,7 +27,6 @@
         >
           <Product v-bind:product="product" />
         </div>
-=======
     <Jumbotron></Jumbotron>
     <!-- <div class="row-sm" v-for="(obj,key) in products" :key="key">
       <div class="col-md-2" v-for="(obj,key) in products" :key="key">
@@ -69,7 +67,6 @@
         v-for="product in products"
       >
         <Product v-bind:product="product" />
->>>>>>> homestyle
       </div>
     </div> -->
 
@@ -78,13 +75,10 @@
 
 <script>
 import Product from "./Product";
-<<<<<<< HEAD
 import CustomMessage from "../views/customMessage";
 import axios from "axios";
-=======
 import Jumbotron from "./Jumbotron";
 import Search from "./Search";
->>>>>>> homestyle
 
 export default {
   name: "ProductsContainer",
@@ -126,10 +120,8 @@ export default {
         },
         {
           id: 3,
-<<<<<<< HEAD
           title: "zzzzzzzzz",
           price: "20$"
-=======
           title: "Three",
           price: "20",
           des: "Product Description",
@@ -148,7 +140,6 @@ export default {
           price: "20",
           des: "Product Description",
           img: require('../assets/images/iphone11pro.jpg')
->>>>>>> homestyle
         }
       ],
       verificationCodeEntered: "",
@@ -202,12 +193,9 @@ export default {
   },
   components: {
     Product,
-<<<<<<< HEAD
     CustomMessage
-=======
     Jumbotron,
     Search
->>>>>>> homestyle
   }
   
 };
@@ -237,7 +225,6 @@ export default {
 }
 .product-box {
   display: block;
-<<<<<<< HEAD
   padding: 10px;
 }
 .error-msg {
@@ -245,9 +232,7 @@ export default {
   font-size: 10px;
   font-weight: lighter;
 }
-=======
   padding: 10px; 
 } */
 
->>>>>>> homestyle
 </style>
