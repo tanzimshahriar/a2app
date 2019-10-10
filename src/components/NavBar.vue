@@ -36,33 +36,6 @@
            <Search></Search>
         </div> <!-- container //  -->
     </nav>
-    <!-- <div id="nav">
-      <div class="home-cart-container">
-        <div
-          class="btn"
-          v-if="!(this.$props.showUnverifiedButtons && this.$props.loggedIn)"
-        >
-          <router-link to="/">Home</router-link>
-        </div>
-        <div
-          class="btn"
-          v-if="!(this.$props.showUnverifiedButtons && this.$props.loggedIn)"
-        >
-          <router-link id="cart-btn" to="/cart">Cart</router-link>
-        </div>
-      </div>
-      <div class="login-signup-container">
-        <div class="btn" v-if="!this.$props.loggedIn">
-          <router-link to="/login">Login</router-link>
-        </div>
-        <div class="btn" v-if="!this.$props.loggedIn">
-          <router-link to="/signup">Signup</router-link>
-        </div>
-        <div class="btn" v-if="this.$props.loggedIn">
-          <router-link to="/logout">Logout</router-link>
-        </div>
-      </div>
-    </div> -->
     <router-view />
   </div>
   

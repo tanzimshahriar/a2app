@@ -1,5 +1,5 @@
 <template>
-  <div>
+  
     <div v-if="this.$props.showUnverified && this.$props.loggedIn">
       <CustomMessage
         title="Verify Your Email to continue"
@@ -27,6 +27,7 @@
         >
           <Product v-bind:product="product" />
         </div>
+      </div>
     <Jumbotron></Jumbotron>
     <!-- <div class="row-sm" v-for="(obj,key) in products" :key="key">
       <div class="col-md-2" v-for="(obj,key) in products" :key="key">
@@ -121,7 +122,7 @@ export default {
         {
           id: 3,
           title: "zzzzzzzzz",
-          price: "20$"
+          price: "20$",
           title: "Three",
           price: "20",
           des: "Product Description",
@@ -193,7 +194,7 @@ export default {
   },
   components: {
     Product,
-    CustomMessage
+    CustomMessage,
     Jumbotron,
     Search
   }
