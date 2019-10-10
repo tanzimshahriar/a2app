@@ -2,7 +2,15 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+<<<<<<< HEAD
 import config from "../vue.config";
+=======
+import 'bootstrap';
+import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
+
+>>>>>>> homestyle
 
 Vue.config.productionTip = false;
 
