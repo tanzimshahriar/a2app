@@ -1,5 +1,4 @@
 <template>
-  
     <div v-if="this.$props.showUnverified && this.$props.loggedIn">
       <CustomMessage
         title="Verify Your Email to continue"
@@ -29,21 +28,7 @@
         </div>
       </div>
     <Jumbotron></Jumbotron>
-    <!-- <div class="row-sm" v-for="(obj,key) in products" :key="key">
-      <div class="col-md-2" v-for="(obj,key) in products" :key="key">
-        <figure class="card card-product">
-          <div class="img-wrap" >
-            <img v-bind:src="obj.img">
-          </div>
-          <figcaption class="info-wrap">
-            <h6 class="title "><a href="#">{{obj.title}}</a></h6>
-            <div class="price-wrap">
-              <span class="price-new">${{obj.price}}</span>
-            </div>  
-          </figcaption>
-        </figure> 
-      </div>  -->
-      
+   
       <div class="container-fluid">
         <div class="row justify-content-center">
             <div class=" col-lg-2 col-md-4 col-sm-4 " v-for="(obj,key) in products" :key="key">
@@ -58,18 +43,7 @@
             </div>
         </div>
       </div>
-      
-
-    <!-- <h1>Products</h1>
-    <div class="container">
-      <div
-        class="product-box"
-        v-bind:key="product.id"
-        v-for="product in products"
-      >
-        <Product v-bind:product="product" />
-      </div>
-    </div> -->
+  
 
   </div>
 </template>
@@ -217,23 +191,5 @@ export default {
     height: 10px;
     background-color: red;
   }
-
-/* .container {
-  padding-top: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-.product-box {
-  display: block;
-  padding: 10px;
-}
-.error-msg {
-  color: red;
-  font-size: 10px;
-  font-weight: lighter;
-}
-  padding: 10px; 
-} */
 
 </style>
