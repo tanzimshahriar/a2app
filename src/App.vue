@@ -6,7 +6,6 @@
       v-bind:showUnverifiedButtons="showUnverifiedToChild"
       v-bind:loggedIn="userLoggedIn"
     />
-    <NavBar v-bind:btnOne="btnOne" v-bind:btnTwo="btnTwo" />
 
   </div>
 </template>
