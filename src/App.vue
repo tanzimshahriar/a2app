@@ -1,16 +1,13 @@
 <template>
   <div id="app">
-<<<<<<< HEAD
     <NavBar
       v-bind:btnOne="btnOne"
       v-bind:btnTwo="btnTwo"
       v-bind:showUnverifiedButtons="showUnverifiedToChild"
       v-bind:loggedIn="userLoggedIn"
     />
-=======
     <NavBar v-bind:btnOne="btnOne" v-bind:btnTwo="btnTwo" />
 
->>>>>>> homestyle
   </div>
 </template>
 
