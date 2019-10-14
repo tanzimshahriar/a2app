@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Cart from "./components/Cart.vue";
 import Home from "./components/Home.vue";
+// import ProductsContainer from "./components/ProductsContainer.vue";
 import Login from "./components/Login.vue";
 import Signup from "./components/Signup.vue";
 import Logout from "./components/Logout.vue";

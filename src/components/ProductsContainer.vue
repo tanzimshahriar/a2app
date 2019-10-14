@@ -17,8 +17,8 @@
       </div>
     </div>
     <div v-else>
-      <h1>Products</h1>
-      <div class="container">
+      <!-- <h1>Products</h1> -->
+      <!-- <div class="container">
         <div
           class="product-box"
           v-bind:key="product.id"
@@ -26,9 +26,9 @@
         >
           <Product v-bind:product="product" />
         </div>
-      </div>
+      </div> -->
     <Jumbotron></Jumbotron>
-   
+    <h1>Products</h1>
       <div class="container-fluid">
         <div class="row justify-content-center">
             <div class=" col-lg-2 col-md-4 col-sm-4 " v-for="(obj,key) in products" :key="key">
@@ -95,9 +95,7 @@ export default {
         },
         {
           id: 3,
-          title: "zzzzzzzzz",
-          price: "20$",
-          title: "Three",
+          title: "Product three",
           price: "20",
           des: "Product Description",
           img:require('../assets/images/iphone11pro.jpg')
