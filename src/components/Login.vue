@@ -77,11 +77,7 @@ export default {
 </script>
 
 <style>
-  .loginContainer{
-    height: auto;
-    
-
-  }
+.loginContainer {
+  height: auto;
+}
 </style>
-
-

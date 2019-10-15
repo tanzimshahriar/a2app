@@ -6,6 +6,7 @@ import Home from "./components/Home.vue";
 import Login from "./components/Login.vue";
 import Signup from "./components/Signup.vue";
 import Logout from "./components/Logout.vue";
+import Profile from "./components/Profile.vue";
 
 Vue.use(Router);
 
@@ -46,6 +47,14 @@ const router = new Router({
       component: Logout,
       meta: {
         requiresLoggedOut: false
+      }
+    },
+    {
+      path: "/profile",
+      name: "Profile",
+      component: Profile,
+      meta: {
+        requiresAccountVerifiedWhenLoggedIn: true
       }
     }
   ]

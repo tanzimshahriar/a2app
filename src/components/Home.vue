@@ -36,8 +36,10 @@ export default {
   },
   methods: {
     checkIfUserVerificationhouldBeShowed() {
-      const url = process.env.NODE_ENV == "production" ? "https://assignment-two-server.appspot.com/user/getverificationstatus"
-      : "http://localhost:8080/user/getverificationstatus";
+      const url =
+        process.env.NODE_ENV == "production"
+          ? "https://assignment-two-server.appspot.com/user/getverificationstatus"
+          : "http://localhost:8080/user/getverificationstatus";
       if (this.$store.getters.loggedIn) {
         axios
           .get(url, {
@@ -49,9 +51,12 @@ export default {
           .then(res => {
             if (res.status == 200 && res.data.result == "Verified") {
               this.showUnverified = false;
-              this.$store.state.showUnverified = false; 
+              this.$store.commit("setUserEmail", res.data.email);
+              this.$store.state.showUnverified = false;
             } else if (res.status == 200 && res.data.result == "unverified") {
+              this.$store.state.user.email = res.data.email;
               this.showUnverified = true;
+              this.$store.commit("setUserEmail", res.data.email);
               this.$store.state.showUnverified = true;
             }
           })

@@ -3,11 +3,10 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import config from "../vue.config";
-import 'bootstrap';
-import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-vue/dist/bootstrap-vue.css';
-
+import "bootstrap";
+import BootstrapVue from "bootstrap-vue/dist/bootstrap-vue.esm";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
 
 Vue.config.productionTip = false;
 
@@ -21,15 +20,16 @@ router.beforeEach((to, from, next) => {
         name: "home"
       });
     }
-    } else if (to.matched.some(route => route.meta.requiresAccountVerifiedWhenLoggedIn)) {
-      if (store.state.showUnverified) {
-        next({
-          name: "home"
-        });
-        
-      } else {
-        next();        
-      }
+  } else if (
+    to.matched.some(route => route.meta.requiresAccountVerifiedWhenLoggedIn)
+  ) {
+    if (store.state.showUnverified) {
+      next({
+        name: "home"
+      });
+    } else {
+      next();
+    }
   } else {
     next();
   }

@@ -76,13 +76,12 @@ export default {
           password: enteredData.inputTwo
         };
 
-        const url = process.env.NODE_ENV == "production" ? "https://assignment-two-server.appspot.com/register"
-        : "http://localhost:8080/register";
+        const url =
+          process.env.NODE_ENV == "production"
+            ? "https://assignment-two-server.appspot.com/register"
+            : "http://localhost:8080/register";
         axios
-          .post(
-            url,
-            postData
-          )
+          .post(url, postData)
           .then(res => {
             if (res.status == 200 && res.data.result == "Success") {
               this.openSignupSuccessModal();

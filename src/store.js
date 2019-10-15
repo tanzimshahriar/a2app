@@ -7,7 +7,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     user: {
-      token: localStorage.getItem("access_token") || null
+      token: localStorage.getItem("access_token") || null,
+      email: ""
     },
     showUnverified: false
   },
@@ -22,18 +23,20 @@ export default new Vuex.Store({
     },
     destroyToken(state) {
       state.user.token = null;
+    },
+    setUserEmail(state, email) {
+      state.user.email = email;
     }
   },
   actions: {
     retrieveToken(context, credentials) {
       return new Promise((resolve, reject) => {
-        const url = process.env.NODE_ENV == "production" ? "https://assignment-two-server.appspot.com/login"
-        : "http://localhost:8080/login";
+        const url =
+          process.env.NODE_ENV == "production"
+            ? "https://assignment-two-server.appspot.com/login"
+            : "http://localhost:8080/login";
         axios
-          .post(
-            url,
-            credentials
-          )
+          .post(url, credentials)
           .then(res => {
             const token = res.data.token;
             localStorage.setItem("access_token", token);

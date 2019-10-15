@@ -2,7 +2,7 @@
   <div class="modalContainer">
     <div class="custom-modal">
       <div class="loginHeader">
-        <p id="signIn">{{title}}</p>
+        <p id="signIn">{{ title }}</p>
       </div>
       <!-- <div class="title">
         {{ this.title }}
@@ -20,17 +20,17 @@
           v-model="inputData.inputTwo"
           ref="inputTwo"
         />
-        <br>
-        <br>
-        <br>
-        <br>
+        <br />
+        <br />
+        <br />
+        <br />
         <div class="submit-btn-container">
           <div class="submit-btn" v-on:click="submitClicked">
             {{ this.placeholderThree }}
           </div>
         </div>
-        <br>
-        <br>
+        <br />
+        <br />
         <div class="error-message">{{ this.errorMessage }}</div>
       </div>
     </div>
@@ -111,11 +111,9 @@ export default {
   width: 100% auto;
   flex-direction: column;
   align-items: center;
-  
 }
-#signIn{
+#signIn {
   margin-top: 32px;
-  
 }
 .custom-modal {
   display: flex;
@@ -128,8 +126,7 @@ export default {
   margin-bottom: 5px;
   margin-top: 50px;
   border-radius: 20px;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.10);
-
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.1);
 }
 .title {
   font-size: 35px;
@@ -150,16 +147,13 @@ input {
   width: 350px;
   border-radius: 30px;
   background-color: rgb(240, 240, 240);
-  border:1px solid rgb(253, 253, 253);
+  border: 1px solid rgb(253, 253, 253);
 }
-input:focus{
+input:focus {
   outline: none !important;
-
 }
-input:hover{
-  
+input:hover {
   background-color: rgb(255, 254, 221);
-  
 }
 input[placeholder] {
   text-align: center;
@@ -169,7 +163,6 @@ input[placeholder] {
   width: 350px;
   cursor: pointer;
   border-radius: 20px;
- 
 }
 .submit-btn {
   display: flex;
@@ -177,22 +170,19 @@ input[placeholder] {
   justify-content: center;
   height: 100%;
   width: 100%;
-  background-color:  rgb(197, 162, 67);
+  background-color: rgb(197, 162, 67);
   border-radius: 20px;
   height: 50px;
   width: 350px;
   color: white;
   font-size: 1rem;
   font-weight: bold;
-  
-  
 }
 .submit-btn:hover {
- 
   color: white;
   font-weight: bolder;
 }
-.loginHeader{
+.loginHeader {
   height: 100px;
   background-color: rgb(197, 162, 67);
   width: 100%;
@@ -205,7 +195,5 @@ input[placeholder] {
 .error-message {
   color: red;
   font-size: 10px;
-
-
 }
 </style>

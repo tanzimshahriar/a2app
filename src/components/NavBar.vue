@@ -1,47 +1,81 @@
 <template>
   <div>
-      <nav class="navbar navbar-landing navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-        <a class="navbar-brand mr-auto" href="#"> <img class="logo" src=""> E-Commerce</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbar1">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item" v-if="!(this.$props.showUnverifiedButtons && this.$props.loggedIn)">
-                <router-link class="nav-link page-scroll" to="/">Home</router-link>
-              </li>
-              <li class="nav-item"  v-if="!(this.$props.showUnverifiedButtons && this.$props.loggedIn)">
-                <router-link class="nav-link page-scroll" to="cart">Cart</router-link>
-              </li>
-              <li class="nav-item" v-if="!(this.$props.showUnverifiedButtons && this.$props.loggedIn)">
-                <router-link class="nav-link page-scroll" to="/">Smnartphones</router-link>
-              </li>
-              <li class="nav-item" v-if="!(this.$props.showUnverifiedButtons && this.$props.loggedIn)">
-                <router-link class="nav-link page-scroll" to="/">Laptops</router-link>
-              </li>
-              <li class="nav-item" v-if="!(this.$props.showUnverifiedButtons && this.$props.loggedIn)">
-                <router-link class="nav-link" to="/"> Ipad </router-link>
-              </li>
-              <li class="nav-item" v-if="!loggedIn">
-                <router-link class="nav-link" to="/Login"> Login </router-link>
-              </li>
-              <li class="nav-item" v-if="!loggedIn">
-                <router-link class="nav-link" to="/signup"> Signup </router-link>
-              </li>
-              <li class="nav-item" v-if="this.$props.loggedIn">
-                <router-link class="nav-link" to="/logout"> Logout </router-link>
-              </li>
-            
-            </ul>
-            
-          </div>
-           <Search></Search>
-        </div> <!-- container //  -->
+    <nav class="navbar navbar-landing navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand mr-auto" href="#">
+          <img class="logo" src="" /> E-Commerce</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbar1"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar1">
+          <ul class="navbar-nav ml-auto">
+            <li
+              class="nav-item"
+              v-if="
+                !(this.$props.showUnverifiedButtons && this.$props.loggedIn)
+              "
+            >
+              <router-link class="nav-link page-scroll" to="/"
+                >Home</router-link
+              >
+            </li>
+            <li
+              class="nav-item"
+              v-if="
+                !(this.$props.showUnverifiedButtons && this.$props.loggedIn)
+              "
+            >
+              <router-link class="nav-link page-scroll" to="cart"
+                >Cart</router-link
+              >
+            </li>
+            <li
+              class="nav-item"
+              v-if="
+                !(this.$props.showUnverifiedButtons && this.$props.loggedIn)
+              "
+            >
+              <router-link class="nav-link page-scroll" to="/"
+                >Smartphones</router-link
+              >
+            </li>
+            <li class="nav-item" v-if="!loggedIn">
+              <router-link class="nav-link" to="/Login"> Login </router-link>
+            </li>
+            <li class="nav-item" v-if="!loggedIn">
+              <router-link class="nav-link" to="/signup"> Signup </router-link>
+            </li>
+            <li class="nav-item" v-if="this.$props.loggedIn">
+              <router-link class="nav-link" to="/logout"> Logout </router-link>
+            </li>
+            <li
+              class="nav-item"
+              v-if="
+                !(this.$props.showUnverifiedButtons && this.$props.loggedIn) &&
+                  this.$props.loggedIn
+              "
+            >
+              <router-link class="nav-link" to="/profile">
+                Your Account
+              </router-link>
+            </li>
+            <div class="user-email" v-if="this.$props.loggedIn">
+              Logged in as {{ $store.state.user.email }}
+            </div>
+          </ul>
+        </div>
+        <Search></Search>
+      </div>
+      <!-- container //  -->
     </nav>
     <router-view />
   </div>
-  
 </template>
 
 <script>
@@ -125,22 +159,21 @@ a:hover {
   width: 100%;
   background: white;
 }
-.navbar-dark .navbar-nav .nav-link{
+.navbar-dark .navbar-nav .nav-link {
   color: rgb(212, 212, 212);
 }
-.navbar-dark .navbar-nav .nav-link:hover{
+.navbar-dark .navbar-nav .nav-link:hover {
   color: rgb(255, 255, 255);
 }
-.ml-auto, .mx-auto {
+.ml-auto,
+.mx-auto {
   margin-left: 40% !important;
   margin-right: 40%;
-  
-
 }
-.navbar-expand-lg .navbar-collapse{
-  
+.navbar-expand-lg .navbar-collapse {
   width: auto 100%;
 }
-
-
+.user-email {
+  color: white;
+}
 </style>
