@@ -28,6 +28,7 @@
         </div>
       </div> -->
     <Jumbotron></Jumbotron>
+    <br>
     <h1>Products</h1>
     <div class="container-fluid">
       <div class="row justify-content-center">
@@ -41,12 +42,9 @@
           <span class="price-new">${{ obj.price }}</span>
           <p>{{ obj.des }}</p>
           <button type="button" class="btn btn-secondary btn-sm btn-block">
-            Add to Cart
+            Add to Cart <img src="../assets/images/cart1.png" width="35px" height="35px"> 
           </button>
           <br />
-          <button type="button" class="btn btn-success btn-sm btn-block">
-            Buy Now
-          </button>
           <br />
         </div>
       </div>
@@ -87,38 +85,73 @@ export default {
       products: [
         {
           id: 1,
-          title: "Product One",
-          price: "25",
-          des: "Product Description",
-          img: require("../assets/images/iphone11pro.jpg")
+          title: "OPPO Mx R",
+          price: "750",
+          des: "Design for Gaming and long Battery life",
+          img: require("../assets/images/oppo.jpg")
         },
         {
           id: 2,
-          title: "Product Two",
-          price: "15",
-          des: "Product Description",
+          title: "Iphone 11",
+          price: "1200",
+          des: "the fastest, most robust mobile phone",
           img: require("../assets/images/iphone11pro.jpg")
         },
         {
           id: 3,
-          title: "Product three",
-          price: "20",
-          des: "Product Description",
-          img: require("../assets/images/iphone11pro.jpg")
+          title: "Samsung S10+",
+          price: "900",
+          des: "Slim, comfortable and simply beautiful",
+          img: require("../assets/images/samsung.jpg")
         },
         {
           id: 4,
-          title: "Four",
-          price: "20",
-          des: "Product Description",
-          img: require("../assets/images/iphone11pro.jpg")
+          title: "Xiaomi Max 10",
+          price: "700",
+          des: "Cheap yet powerful, water resitance",
+          img: require("../assets/images/xiaomi.jpg")
         },
         {
           id: 5,
-          title: "Five",
-          price: "20",
-          des: "Product Description",
-          img: require("../assets/images/iphone11pro.jpg")
+          title: "Asus XR delight",
+          price: "1000",
+          des: "Design to last long, enjoy the real power ",
+          img: require("../assets/images/asus.jpg")
+        },
+         {
+          id: 6,
+          title: "One Plus 7",
+          price: "950",
+          des: "Never Let you Down, Stay comfort all day long",
+          img: require("../assets/images/one.jpg")
+        },
+        {
+          id: 7,
+          title: "Google Pixel 3Xl",
+          price: "1100",
+          des: "Get everything at one place, Enjoy what you've got",
+          img: require("../assets/images/pixel.jpg")
+        },
+        {
+          id: 8,
+          title: "Honor Flex",
+          price: "1300",
+          des: "Get Real, get flexible, the new technflex",
+          img: require("../assets/images/honor.jpg")
+        },
+        {
+          id: 9,
+          title: "Honor Flex",
+          price: "1300",
+          des: "Get Real, get flexible, the new technflex",
+          img: require("../assets/images/honor.jpg")
+        },
+        {
+          id: 9,
+          title: "Moto GX90",
+          price: "700",
+          des: "Great camera with 45 mpx , tripe camera",
+          img: require("../assets/images/moto.jpg")
         }
       ],
       verificationCodeEntered: "",
@@ -197,5 +230,8 @@ export default {
   width: 10px;
   height: 10px;
   background-color: red;
+}
+.btn-secondary{
+  background-color: rgb(57, 116, 77);
 }
 </style>

@@ -2,9 +2,11 @@
   <div>
     <nav class="navbar navbar-landing navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
+        
         <a class="navbar-brand mr-auto" href="#">
           <img class="logo" src="" /> E-Commerce</a
         >
+        
         <button
           class="navbar-toggler"
           type="button"
@@ -25,16 +27,7 @@
                 >Home</router-link
               >
             </li>
-            <li
-              class="nav-item"
-              v-if="
-                !(this.$props.showUnverifiedButtons && this.$props.loggedIn)
-              "
-            >
-              <router-link class="nav-link page-scroll" to="cart"
-                >Cart</router-link
-              >
-            </li>
+            
             <li
               class="nav-item"
               v-if="
@@ -51,9 +44,7 @@
             <li class="nav-item" v-if="!loggedIn">
               <router-link class="nav-link" to="/signup"> Signup </router-link>
             </li>
-            <li class="nav-item" v-if="this.$props.loggedIn">
-              <router-link class="nav-link" to="/logout"> Logout </router-link>
-            </li>
+            
             <li
               class="nav-item"
               v-if="
@@ -62,12 +53,28 @@
               "
             >
               <router-link class="nav-link" to="/profile">
-                Your Account
+                My Account
               </router-link>
             </li>
+            <li id="cart"
+              class="nav-item"
+              v-if="
+                !(this.$props.showUnverifiedButtons && this.$props.loggedIn)
+              "
+            >
+              <router-link class="nav-link page-scroll" to="cart"
+                >Cart <img src="../assets/images/cart1.png" width="30px" height="30px"> </router-link
+              >
+              
+            </li>
+            
+            
             <div class="user-email" v-if="this.$props.loggedIn">
               Logged in as {{ $store.state.user.email }}
             </div>
+            <li id="logout" class="nav-item" v-if="this.$props.loggedIn">
+              <router-link class="nav-link" to="/logout"> Logout </router-link>
+            </li>
           </ul>
         </div>
         <Search></Search>
@@ -161,19 +168,28 @@ a:hover {
 }
 .navbar-dark .navbar-nav .nav-link {
   color: rgb(212, 212, 212);
+
 }
 .navbar-dark .navbar-nav .nav-link:hover {
   color: rgb(255, 255, 255);
 }
 .ml-auto,
 .mx-auto {
-  margin-left: 40% !important;
-  margin-right: 40%;
+  /* margin-left: 20% !important;
+  margin-right: 20%; */
 }
 .navbar-expand-lg .navbar-collapse {
   width: auto 100%;
 }
 .user-email {
-  color: white;
+  color: rgb(165, 141, 3);
+  margin-top: 8px;
+}
+
+#cart{
+  background-color: rgb(57, 116, 77);
+    border-radius: 0.5rem;
+    height: 40px;;
+  
 }
 </style>

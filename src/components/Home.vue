@@ -74,6 +74,7 @@ export default {
     userVerificationDone() {
       //todo: vanlal show a popup alert using bootstrap saying "Thanks for verifying your email"
       this.checkIfUserVerificationhouldBeShowed();
+      
     }
   },
   computed: {
