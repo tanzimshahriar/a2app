@@ -5,21 +5,27 @@
         <div class="row d-flex" style="min-height:600px;">
           <div class="col-sm-6 d-flex align-items-center">
             <header class="intro-wrap text-white">
-              <h2 class="display-3">The new Imac faster than ever</h2>
+              <h2 class="display-3">The new Iphone Designed to be fast</h2>
               <p class="lead">
-                tired with slow processing and computing power?<br />
-                Then this is just right for you. all hard specification are
-                upgraded for to design, video,play and many more
+                A no-brainer. But who has ever complained that a new iPhone felt
+                slow? much faster, much stronger, much prettier and battery life
+                last much longer what else do you want?<br />
               </p>
-              <a href="#" class="btn btn-warning">Buy Now</a>
-              <a href="#" class="btn btn-light">Read More</a>
+              <a href="#" class="btn btn-warning"
+                >Add to Cart
+                <img
+                  src="../assets/images/cart1.png"
+                  width="35px"
+                  height="35px"
+                />
+              </a>
             </header>
             <!-- intro-wrap .// -->
           </div>
           <!-- col.// -->
           <div class="col-sm-6 text-right">
             <img
-              src="../assets/images/comp.png"
+              src="../assets/images/Phones.png"
               class="img-fluid my-5"
               width="500"
             />
