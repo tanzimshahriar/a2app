@@ -2,11 +2,10 @@
   <div>
     <nav class="navbar navbar-landing navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        
         <a class="navbar-brand mr-auto" href="#">
           <img class="logo" src="" /> E-Commerce</a
         >
-        
+
         <button
           class="navbar-toggler"
           type="button"
@@ -27,7 +26,7 @@
                 >Home</router-link
               >
             </li>
-            
+
             <li
               class="nav-item"
               v-if="
@@ -44,7 +43,7 @@
             <li class="nav-item" v-if="!loggedIn">
               <router-link class="nav-link" to="/signup"> Signup </router-link>
             </li>
-            
+
             <li
               class="nav-item"
               v-if="
@@ -56,19 +55,23 @@
                 My Account
               </router-link>
             </li>
-            <li id="cart"
+            <li
+              id="cart"
               class="nav-item"
               v-if="
                 !(this.$props.showUnverifiedButtons && this.$props.loggedIn)
               "
             >
               <router-link class="nav-link page-scroll" to="cart"
-                >Cart <img src="../assets/images/cart1.png" width="30px" height="30px"> </router-link
-              >
-              
+                >Cart
+                <img
+                  src="../assets/images/cart1.png"
+                  width="30px"
+                  height="30px"
+                />
+              </router-link>
             </li>
-            
-            
+
             <div class="user-email" v-if="this.$props.loggedIn">
               Logged in as {{ $store.state.user.email }}
             </div>
@@ -168,7 +171,6 @@ a:hover {
 }
 .navbar-dark .navbar-nav .nav-link {
   color: rgb(212, 212, 212);
-
 }
 .navbar-dark .navbar-nav .nav-link:hover {
   color: rgb(255, 255, 255);
@@ -186,10 +188,9 @@ a:hover {
   margin-top: 8px;
 }
 
-#cart{
+#cart {
   background-color: rgb(57, 116, 77);
-    border-radius: 0.5rem;
-    height: 40px;;
-  
+  border-radius: 0.5rem;
+  height: 40px;
 }
 </style>

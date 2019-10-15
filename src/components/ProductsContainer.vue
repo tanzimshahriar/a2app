@@ -28,7 +28,7 @@
         </div>
       </div> -->
     <Jumbotron></Jumbotron>
-    <br>
+    <br />
     <h1>Products</h1>
     <div class="container-fluid">
       <div class="row justify-content-center">
@@ -42,7 +42,8 @@
           <span class="price-new">${{ obj.price }}</span>
           <p>{{ obj.des }}</p>
           <button type="button" class="btn btn-secondary btn-sm btn-block">
-            Add to Cart <img src="../assets/images/cart1.png" width="35px" height="35px"> 
+            Add to Cart
+            <img src="../assets/images/cart1.png" width="35px" height="35px" />
           </button>
           <br />
           <br />
@@ -118,7 +119,7 @@ export default {
           des: "Design to last long, enjoy the real power ",
           img: require("../assets/images/asus.jpg")
         },
-         {
+        {
           id: 6,
           title: "One Plus 7",
           price: "950",
@@ -231,7 +232,7 @@ export default {
   height: 10px;
   background-color: red;
 }
-.btn-secondary{
+.btn-secondary {
   background-color: rgb(57, 116, 77);
 }
 </style>
