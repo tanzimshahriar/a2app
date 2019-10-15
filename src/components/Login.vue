@@ -2,6 +2,7 @@
   <div class="loginContainer">
     <CustomModal
       btnLabel="LOGIN"
+      title="Login"
       firstInputLabel="Enter Your Email"
       secondInputLabel="Enter Your Password"
       inputOneType="email"

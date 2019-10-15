@@ -3,8 +3,8 @@
     <div class="signup-container">
       <CustomModal
         v-if="!signupSuccessModal"
-       
         btnLabel="SIGNUP"
+        title="Sign up"
         firstInputLabel="Enter Your Email"
         secondInputLabel="Enter Your Password"
         inputOneType="email"

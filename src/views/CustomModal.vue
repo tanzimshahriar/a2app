@@ -2,11 +2,11 @@
   <div class="modalContainer">
     <div class="custom-modal">
       <div class="loginHeader">
-        <p id="signIn">Sign In</p>
+        <p id="signIn">{{title}}</p>
       </div>
-      <div class="title">
+      <!-- <div class="title">
         {{ this.title }}
-      </div>
+      </div> -->
       <div class="inputs">
         <input
           v-bind:type="inputOneTypeComputed"
