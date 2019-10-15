@@ -1,8 +1,8 @@
 <template>
   <div class="loginContainer">
     <CustomModal
-      title="Login"
       btnLabel="LOGIN"
+      title="Login"
       firstInputLabel="Enter Your Email"
       secondInputLabel="Enter Your Password"
       inputOneType="email"
@@ -75,3 +75,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.loginContainer {
+  height: auto;
+}
+</style>

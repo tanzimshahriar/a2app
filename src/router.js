@@ -1,11 +1,12 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Cart from "./components/Cart.vue";
-import ProductsContainer from "./components/ProductsContainer.vue";
+import Home from "./components/Home.vue";
+// import ProductsContainer from "./components/ProductsContainer.vue";
 import Login from "./components/Login.vue";
 import Signup from "./components/Signup.vue";
 import Logout from "./components/Logout.vue";
-// import store from "./store.js";
+import Profile from "./components/Profile.vue";
 
 Vue.use(Router);
 
@@ -14,32 +15,46 @@ const router = new Router({
     {
       path: "/cart",
       name: "cart",
-      component: Cart
+      component: Cart,
+      meta: {
+        requiresAccountVerifiedWhenLoggedIn: true
+      }
     },
     {
       path: "/login",
       name: "login",
       component: Login,
       meta: {
-        loggedout: true
+        requiresLoggedOut: true
       }
     },
     {
       path: "/signup",
       name: "signup",
-      component: Signup
+      component: Signup,
+      meta: {
+        requiresLoggedOut: true
+      }
     },
     {
       path: "/",
       name: "home",
-      component: ProductsContainer
+      component: Home
     },
     {
       path: "/logout",
       name: "logout",
       component: Logout,
       meta: {
-        loggedout: true
+        requiresLoggedOut: false
+      }
+    },
+    {
+      path: "/profile",
+      name: "Profile",
+      component: Profile,
+      meta: {
+        requiresAccountVerifiedWhenLoggedIn: true
       }
     }
   ]

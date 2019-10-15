@@ -6,31 +6,37 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    token: localStorage.getItem("access_token") || null
+    user: {
+      token: localStorage.getItem("access_token") || null,
+      email: ""
+    },
+    showUnverified: false
   },
   getters: {
     loggedIn(state) {
-      return state.token == null ? false : true;
+      return state.user.token == null ? false : true;
     }
   },
   mutations: {
     retrieveToken(state, token) {
-      state.token = token;
+      state.user.token = token;
     },
     destroyToken(state) {
-      state.token = null;
+      state.user.token = null;
+    },
+    setUserEmail(state, email) {
+      state.user.email = email;
     }
   },
   actions: {
     retrieveToken(context, credentials) {
       return new Promise((resolve, reject) => {
+        const url =
+          process.env.NODE_ENV == "production"
+            ? "https://assignment-two-server.appspot.com/login"
+            : "http://localhost:8080/login";
         axios
-          .post(
-            //for dev env:
-            //"http://localhost:8080/login",
-            "https://assignment-two-server.appspot.com/login",
-            credentials
-          )
+          .post(url, credentials)
           .then(res => {
             const token = res.data.token;
             localStorage.setItem("access_token", token);

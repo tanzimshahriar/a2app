@@ -3,8 +3,8 @@
     <div class="signup-container">
       <CustomModal
         v-if="!signupSuccessModal"
-        title="Signup"
         btnLabel="SIGNUP"
+        title="Sign up"
         firstInputLabel="Enter Your Email"
         secondInputLabel="Enter Your Password"
         inputOneType="email"
@@ -27,6 +27,7 @@
 import CustomModal from "../views/CustomModal";
 import CustomMessage from "../views/customMessage";
 import axios from "axios";
+
 export default {
   name: "",
   data() {
@@ -75,13 +76,12 @@ export default {
           password: enteredData.inputTwo
         };
 
+        const url =
+          process.env.NODE_ENV == "production"
+            ? "https://assignment-two-server.appspot.com/register"
+            : "http://localhost:8080/register";
         axios
-          .post(
-            //for dev env:
-            //"http://localhost:8080/register",
-            "https://assignment-two-server.appspot.com/register",
-            postData
-          )
+          .post(url, postData)
           .then(res => {
             if (res.status == 200 && res.data.result == "Success") {
               this.openSignupSuccessModal();

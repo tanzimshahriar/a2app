@@ -1,33 +1,90 @@
 <template>
   <div>
-    <div id="nav">
-      <div class="home-cart-container">
-        <div class="btn">
-          <router-link to="/">Home</router-link>
+    <nav class="navbar navbar-landing navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand mr-auto" href="#">
+          <img class="logo" src="" /> E-Commerce</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbar1"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar1">
+          <ul class="navbar-nav ml-auto">
+            <li
+              class="nav-item"
+              v-if="
+                !(this.$props.showUnverifiedButtons && this.$props.loggedIn)
+              "
+            >
+              <router-link class="nav-link page-scroll" to="/"
+                >Home</router-link
+              >
+            </li>
+            <li
+              class="nav-item"
+              v-if="
+                !(this.$props.showUnverifiedButtons && this.$props.loggedIn)
+              "
+            >
+              <router-link class="nav-link page-scroll" to="cart"
+                >Cart</router-link
+              >
+            </li>
+            <li
+              class="nav-item"
+              v-if="
+                !(this.$props.showUnverifiedButtons && this.$props.loggedIn)
+              "
+            >
+              <router-link class="nav-link page-scroll" to="/"
+                >Smartphones</router-link
+              >
+            </li>
+            <li class="nav-item" v-if="!loggedIn">
+              <router-link class="nav-link" to="/Login"> Login </router-link>
+            </li>
+            <li class="nav-item" v-if="!loggedIn">
+              <router-link class="nav-link" to="/signup"> Signup </router-link>
+            </li>
+            <li class="nav-item" v-if="this.$props.loggedIn">
+              <router-link class="nav-link" to="/logout"> Logout </router-link>
+            </li>
+            <li
+              class="nav-item"
+              v-if="
+                !(this.$props.showUnverifiedButtons && this.$props.loggedIn) &&
+                  this.$props.loggedIn
+              "
+            >
+              <router-link class="nav-link" to="/profile">
+                Your Account
+              </router-link>
+            </li>
+            <div class="user-email" v-if="this.$props.loggedIn">
+              Logged in as {{ $store.state.user.email }}
+            </div>
+          </ul>
         </div>
-        <div class="btn">
-          <router-link id="cart-btn" to="/cart">Cart</router-link>
-        </div>
+        <Search></Search>
       </div>
-      <div class="login-signup-container">
-        <div class="btn" v-if="!loggedIn">
-          <router-link to="/login">Login</router-link>
-        </div>
-        <div class="btn" v-if="!loggedIn">
-          <router-link to="/signup">Signup</router-link>
-        </div>
-        <div class="btn" v-if="loggedIn">
-          <router-link to="/logout">Logout</router-link>
-        </div>
-      </div>
-    </div>
+      <!-- container //  -->
+    </nav>
     <router-view />
   </div>
 </template>
 
 <script>
+import Search from "./Search";
 export default {
   name: "NavBar",
+  components: {
+    Search
+  },
   props: {
     btnOne: {
       type: String,
@@ -36,11 +93,22 @@ export default {
     btnTwo: {
       type: String,
       required: true
+    },
+    showUnverifiedButtons: {
+      type: Boolean,
+      required: true
+    },
+    loggedIn: {
+      type: Boolean,
+      required: true
     }
   },
-  computed: {
-    loggedIn() {
-      return this.$store.getters.loggedIn;
+  watch: {
+    showUnverifiedButtons: function(newProp) {
+      this.showUnverifiedButtons = newProp;
+    },
+    loggedIn: function(newProp) {
+      this.loggedIn = newProp;
     }
   }
 };
@@ -62,13 +130,13 @@ export default {
   display: flex;
   align-self: flex-end;
 }
-.btn {
+/* .btn {
   align-self: flex-end;
   color: #2c3e50;
   padding: 10px;
   text-decoration: none;
   cursor: pointer;
-}
+} */
 a {
   color: #2c3e50;
   font-weight: lighter;
@@ -90,5 +158,22 @@ a:hover {
   height: 100%;
   width: 100%;
   background: white;
+}
+.navbar-dark .navbar-nav .nav-link {
+  color: rgb(212, 212, 212);
+}
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: rgb(255, 255, 255);
+}
+.ml-auto,
+.mx-auto {
+  margin-left: 40% !important;
+  margin-right: 40%;
+}
+.navbar-expand-lg .navbar-collapse {
+  width: auto 100%;
+}
+.user-email {
+  color: white;
 }
 </style>
