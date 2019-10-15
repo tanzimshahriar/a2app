@@ -8,19 +8,19 @@
           </button>
           <div class="collapse navbar-collapse" id="navbar1">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
+              <li class="nav-item" v-if="!(this.$props.showUnverifiedButtons && this.$props.loggedIn)">
                 <router-link class="nav-link page-scroll" to="/">Home</router-link>
               </li>
-              <li class="nav-item">
+              <li class="nav-item"  v-if="!(this.$props.showUnverifiedButtons && this.$props.loggedIn)">
                 <router-link class="nav-link page-scroll" to="cart">Cart</router-link>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" v-if="!(this.$props.showUnverifiedButtons && this.$props.loggedIn)">
                 <router-link class="nav-link page-scroll" to="/">Smnartphones</router-link>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" v-if="!(this.$props.showUnverifiedButtons && this.$props.loggedIn)">
                 <router-link class="nav-link page-scroll" to="/">Laptops</router-link>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" v-if="!(this.$props.showUnverifiedButtons && this.$props.loggedIn)">
                 <router-link class="nav-link" to="/"> Ipad </router-link>
               </li>
               <li class="nav-item" v-if="!loggedIn">
@@ -28,6 +28,9 @@
               </li>
               <li class="nav-item" v-if="!loggedIn">
                 <router-link class="nav-link" to="/signup"> Signup </router-link>
+              </li>
+              <li class="nav-item" v-if="this.$props.loggedIn">
+                <router-link class="nav-link" to="/logout"> Logout </router-link>
               </li>
             
             </ul>
