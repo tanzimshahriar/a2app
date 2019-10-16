@@ -1,14 +1,18 @@
 <template>
   <div>
     <div class="pd-container">
-    <img alt="Product Image not available"  src="../assets/images/asus.jpg"/>
-    <h5 class="card-title">{{ name }}</h5>
-    <span class="price-new">${{ price }}</span>
-    <p>{{ description }}</p>
-     </div>
+      <img alt="Product Image not available" src="../assets/images/asus.jpg" />
+      <h5 class="card-title">{{ name }}</h5>
+      <span class="price-new">${{ price }}</span>
+      <p>{{ description }}</p>
+    </div>
 
-    <button id="pd-Btn" type="button" class="btn btn-secondary btn-sm btn-block" v-on:click="addCartButtonClicked">
-     
+    <button
+      id="pd-Btn"
+      type="button"
+      class="btn btn-secondary btn-sm btn-block"
+      v-on:click="addCartButtonClicked"
+    >
       Add to Cart
       <img src="../assets/images/cart1.png" width="35px" height="35px" />
     </button>
@@ -37,12 +41,11 @@ export default {
         type: String,
         required: true
       },
-       imagesrc: {
+      imagesrc: {
         type: String,
         required: true
-      },
+      }
     }
-
   },
   data: function() {
     return {
@@ -74,8 +77,8 @@ export default {
       let item = {
         name: this.name,
         price: this.price
-      }
-      if(this.quantity>0){
+      };
+      if (this.quantity > 0) {
         this.$store.commit("addItemToCart", item);
       }
     }
@@ -90,10 +93,10 @@ export default {
 .product-price {
   font-weight: lighter;
 }
-.pd-container{
+.pd-container {
   min-height: 380px;
 }
-#pd-Btn{
-background-color: rgb(57, 116, 77);
+#pd-Btn {
+  background-color: rgb(57, 116, 77);
 }
 </style>

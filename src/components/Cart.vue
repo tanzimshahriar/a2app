@@ -29,36 +29,47 @@
             </tr>
           </thead>
           <tbody>
-              <tr  class="each-cart-product" v-for="(product, key) in products" :key="key">
-                <td>
-                  <figure class="media">
-                    <div class="img-wrap">
-                      <img src="../assets/images/asus.jpg" class="img-thumbnail img-sm" />
-                    </div>
-                    <figcaption class="media-body">
-                      <h6 class="title text-truncate">{{product.name}}</h6>
-                      <dl class="param param-inline small"></dl>
-                    </figcaption>
-                  </figure>
-                </td>
-                <td class="quantity">
-                  <div id="number">{{product.number}}</div>
-                  <div id="quantity-buttons">
-                    <button v-on:click="addQuantity(product)">+</button>
-                    <button v-on:click="decreaseQuantity(product)">-</button>
+            <tr
+              class="each-cart-product"
+              v-for="(product, key) in products"
+              :key="key"
+            >
+              <td>
+                <figure class="media">
+                  <div class="img-wrap">
+                    <img
+                      src="../assets/images/asus.jpg"
+                      class="img-thumbnail img-sm"
+                    />
                   </div>
-                </td>
-                <td>
-                  <div class="price-wrap">
-                    <var class="price">${{product.price}}</var>
-                  </div>
-                  <!-- price-wrap .// -->
-                </td>
-                <td class="text-right">
-                  <a href class="btn btn-outline-danger btn-round">× Remove</a>
-                </td>
-              </tr>
-            
+                  <figcaption class="media-body">
+                    <h6 class="title text-truncate">{{ product.name }}</h6>
+                    <dl class="param param-inline small"></dl>
+                  </figcaption>
+                </figure>
+              </td>
+              <td class="quantity">
+                <div id="number">{{ product.number }}</div>
+                <div id="quantity-buttons">
+                  <button v-on:click="addQuantity(product)">+</button>
+                  <button v-on:click="decreaseQuantity(product)">-</button>
+                </div>
+              </td>
+              <td>
+                <div class="price-wrap">
+                  <var class="price">${{ product.price }}</var>
+                </div>
+                <!-- price-wrap .// -->
+              </td>
+              <td class="text-right">
+                <p
+                  class="btn btn-outline-danger btn-round"
+                  v-on:click="removeItem(product)"
+                >
+                  × Remove
+                </p>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -83,14 +94,17 @@ export default {
       this.$store.commit("addItemToCart", item);
     },
     decreaseQuantity(item) {
-      this.$store.commit("decreaseNumber", item);
+      this.$store.dispatch("decreaseNumber", item);
+    },
+    removeItem(item) {
+      console.log(item);
+      this.$store.commit("removeItem", item);
     }
   },
   mounted() {
     this.products = this.$store.getters.getCart;
   }
-}
-
+};
 </script>
 
 <style scoped>
@@ -139,12 +153,12 @@ var {
   max-height: 75px;
   object-fit: cover;
 }
-.quantity{
+.quantity {
   display: flex;
   justify-content: center;
   justify-items: space-around;
 }
-#quantity-buttons{
+#quantity-buttons {
   display: flex;
   flex-direction: column;
   place-items: stretch;
@@ -171,4 +185,3 @@ var {
   padding-top: 10px;
 }
 </style>
-
