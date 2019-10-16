@@ -87,8 +87,6 @@ export default {
   },
   methods: {
     submitVerificationCode() {
-      console.log(this.verificationCodeEntered);
-      console.log("token" + this.$store.state.user.token);
       if (this.verificationCodeEntered != "") {
         this.showErrorMessage = false;
         this.errorMessage = "";
@@ -115,7 +113,6 @@ export default {
               this.showErrorMessage = true;
               this.errorMessage = "*verification failed, try again";
             }
-            console.log(res.result);
           })
           .catch(err => {
             if (err.response.data.errorCode == "Invalid") {
@@ -128,10 +125,8 @@ export default {
         this.showErrorMessage = true;
         this.errorMessage = "*please enter the verification code";
       }
-      console.log("ErrorMessage:" + this.errorMessage);
     },
     fetchProducts() {
-      console.log("fetchProducts()");
       const url =
         process.env.NODE_ENV == "production"
           ? "https://assignment-two-server.appspot.com/getproducts"

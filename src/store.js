@@ -10,11 +10,15 @@ export default new Vuex.Store({
       token: localStorage.getItem("access_token") || null,
       email: ""
     },
-    showUnverified: false
+    showUnverified: false,
+    cart: []
   },
   getters: {
     loggedIn(state) {
       return state.user.token == null ? false : true;
+    },
+    getCart(state) {
+      return state.cart;
     }
   },
   mutations: {
@@ -26,6 +30,29 @@ export default new Vuex.Store({
     },
     setUserEmail(state, email) {
       state.user.email = email;
+    },
+    addItemToCart(state, item) {
+      var itemToBeAdded = {};
+      for(var i = 0; i < state.cart.length; i++) {
+        if(state.cart[i].name==item.name){
+          state.cart[i].number=state.cart[i].number+1;
+          return
+        }
+      }
+      itemToBeAdded = {
+        name: item.name,
+        price: item.price,
+        number: 1
+      }
+      state.cart.push(itemToBeAdded)
+    },
+    decreaseNumber(state, item) {
+      for(var i = 0; i < state.cart.length; i++) {
+        if(state.cart[i].name==item.name){
+          state.cart[i].number=state.cart[i].number-1;
+          return
+        }
+      }
     }
   },
   actions: {

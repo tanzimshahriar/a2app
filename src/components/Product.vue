@@ -7,7 +7,7 @@
     <p>{{ description }}</p>
      </div>
 
-    <button id="pd-Btn" type="button" class="btn btn-secondary btn-sm btn-block">
+    <button id="pd-Btn" type="button" class="btn btn-secondary btn-sm btn-block" v-on:click="addCartButtonClicked">
      
       Add to Cart
       <img src="../assets/images/cart1.png" width="35px" height="35px" />
@@ -67,6 +67,17 @@ export default {
       this.quantity = this.newProp.product.quantity;
       this.price = this.newProp.product.price;
       this.imagesrc = this.newProp.product.imagesrc;
+    }
+  },
+  methods: {
+    addCartButtonClicked() {
+      let item = {
+        name: this.name,
+        price: this.price
+      }
+      if(this.quantity>0){
+        this.$store.commit("addItemToCart", item);
+      }
     }
   }
 };
