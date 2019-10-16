@@ -7,7 +7,7 @@
       <div class="card">
         <table class="table table-hover shopping-cart-wrap">
           <thead class="text-muted">
-            <tr  v-if="products>0">
+            <tr  v-if="!cartIsEmpty">
               <th scope="col">Product</th>
               <th scope="col" width="120">Quantity</th>
               <th scope="col" width="120">Price</th>
@@ -47,14 +47,14 @@
                 >× Remove</p>
               </td>
             </tr>
-            <tr  v-if="products>0">
+            <tr  v-if="!cartIsEmpty">
               <th scope="col">Total</th>
               <th scope="col" width="120">${{totalPrice}}</th>
               <th scope="col" width="120">
                 <button>Clear Cart</button>
               </th>
             </tr>
-            <p  v-else>
+            <p  v-if="cartIsEmpty">
               Your Cart is empty
             </p>
           </tbody>
@@ -87,6 +87,12 @@ export default {
     removeItem(item) {
       console.log(item);
       this.$store.commit("removeItem", item);
+    }
+  },
+  computed: {
+    cartIsEmpty(){
+      console.log(this.products.length)
+      return this.products.length>0? false : true;
     }
   },
   mounted() {

@@ -5,11 +5,18 @@
       <h5 class="card-title">{{ name }}</h5>
       <span class="price-new">${{ price }}</span>
       <p>{{ description }}</p>
-    </div>
-
+      <div id="countItem" v-if="product.quantity<10" >
+         <h5 v-for="item in product.quantity">{{item}} Item remaining</h5>
+      </div>
+    </div>   
+    <div id="soldOut" v-if="outOfQty">
+      <h5>Sorry Product Sold out</h5>
+    </div>   
     <button
+    v-if="!outOfQty"
       id="pd-Btn"
       type="button"
+       
       class="btn btn-secondary btn-sm btn-block"
       v-on:click="addCartButtonClicked"
     >
@@ -82,6 +89,11 @@ export default {
         this.$store.commit("addItemToCart", item);
       }
     }
+  },
+  computed:{
+    outOfQty(){
+      return this.product.quantity>0?false: true;
+    }
   }
 };
 </script>
@@ -98,5 +110,11 @@ export default {
 }
 #pd-Btn {
   background-color: rgb(57, 116, 77);
+}
+#soldOut{
+  color:red;
+}
+#countItem{
+  color:yellow;
 }
 </style>
