@@ -37,10 +37,10 @@
           v-for="(obj, key) in products"
           :key="key"
         >
-          <img img v-bind:src="obj.img" />
-          <h5 class="card-title">{{ obj.title }}</h5>
+          <img alt = "Product Image not available" v-bind:src="'obj.imagesrc'" />
+          <h5 class="card-title">{{ obj.name }}</h5>
           <span class="price-new">${{ obj.price }}</span>
-          <p>{{ obj.des }}</p>
+          <p>{{ obj.description }}</p>
           <button type="button" class="btn btn-secondary btn-sm btn-block">
             Add to Cart
             <img src="../assets/images/cart1.png" width="35px" height="35px" />
@@ -72,6 +72,12 @@ export default {
       required: true
     }
   },
+  mounted() {
+    this.fetchProducts();
+  },
+  // updated() {
+  //   this.fetchProducts();
+  // },
   watch: {
     showUnverified: function(newProp) {
       this.showUnverified = newProp;
@@ -83,78 +89,8 @@ export default {
 
   data: function() {
     return {
-      products: [
-        {
-          id: 1,
-          title: "OPPO Mx R",
-          price: "750",
-          des: "Design for Gaming and long Battery life",
-          img: require("../assets/images/oppo.jpg")
-        },
-        {
-          id: 2,
-          title: "Iphone 11",
-          price: "1200",
-          des: "the fastest, most robust mobile phone",
-          img: require("../assets/images/iphone11pro.jpg")
-        },
-        {
-          id: 3,
-          title: "Samsung S10+",
-          price: "900",
-          des: "Slim, comfortable and simply beautiful",
-          img: require("../assets/images/samsung.jpg")
-        },
-        {
-          id: 4,
-          title: "Xiaomi Max 10",
-          price: "700",
-          des: "Cheap yet powerful, water resitance",
-          img: require("../assets/images/xiaomi.jpg")
-        },
-        {
-          id: 5,
-          title: "Asus XR delight",
-          price: "1000",
-          des: "Design to last long, enjoy the real power ",
-          img: require("../assets/images/asus.jpg")
-        },
-        {
-          id: 6,
-          title: "One Plus 7",
-          price: "950",
-          des: "Never Let you Down, Stay comfort all day long",
-          img: require("../assets/images/one.jpg")
-        },
-        {
-          id: 7,
-          title: "Google Pixel 3Xl",
-          price: "1100",
-          des: "Get everything at one place, Enjoy what you've got",
-          img: require("../assets/images/pixel.jpg")
-        },
-        {
-          id: 8,
-          title: "Honor Flex",
-          price: "1300",
-          des: "Get Real, get flexible, the new technflex",
-          img: require("../assets/images/honor.jpg")
-        },
-        {
-          id: 9,
-          title: "Honor Flex",
-          price: "1300",
-          des: "Get Real, get flexible, the new technflex",
-          img: require("../assets/images/honor.jpg")
-        },
-        {
-          id: 9,
-          title: "Moto GX90",
-          price: "700",
-          des: "Great camera with 45 mpx , tripe camera",
-          img: require("../assets/images/moto.jpg")
-        }
-      ],
+      products: [],
+      images: [],
       verificationCodeEntered: "",
       showErrorMessage: false,
       errorMessage: ""
@@ -204,6 +140,21 @@ export default {
         this.errorMessage = "*please enter the verification code";
       }
       console.log("ErrorMessage:" + this.errorMessage);
+    },
+    fetchProducts () {
+      console.log("fetchProducts()");
+      const url =
+          process.env.NODE_ENV == "production"
+            ? "https://assignment-two-server.appspot.com/getproducts"
+            : "http://localhost:8080/getproducts";
+      axios
+          .get(url)
+          .then(res => {
+            this.products = res.data.products;
+          })
+          .catch(err => {
+            console.log(err);
+          });
     }
   },
   components: {
