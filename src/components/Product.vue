@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img alt="Product Image not available" v-bind:src="'obj.imagesrc'" />
+    <img alt="Product Image not available"  v-bind:src="('this.imagesrc')"/>
     <h5 class="card-title">{{ name }}</h5>
     <span class="price-new">${{ price }}</span>
     <p>{{ description }}</p>
@@ -33,14 +33,20 @@ export default {
         type: String,
         required: true
       },
+       imagesrc: {
+        type: String,
+        required: true
+      },
     }
+
   },
   data: function() {
     return {
       name: "",
       description: "",
       quantity: 0,
-      price: 0
+      price: 0,
+      imagesrc: ""
     };
   },
   mounted() {
@@ -50,6 +56,7 @@ export default {
     this.description = this.$props.product.description;
     this.quantity = this.$props.product.quantity;
     this.price = this.$props.product.price;
+    this.imagesrc = this.$props.product.imagesrc;
   }
 };
 </script>
