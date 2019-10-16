@@ -6,7 +6,7 @@
     <p>{{ description }}</p>
     <button type="button" class="btn btn-secondary btn-sm btn-block">
       Add to Cart
-      <img src="this.props.imagesrc" width="35px" height="35px" />
+      <img src="../assets/images/cart1.png" width="35px" height="35px" />
     </button>
     <br />
     <br />
