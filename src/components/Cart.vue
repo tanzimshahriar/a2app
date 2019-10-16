@@ -1,19 +1,5 @@
 <template>
-  <div class="cart">
-    <!-- <h1>Your Cart</h1>
-    <div class = "cart-items-container">
-      <div class = "cart-item">
-        Item
-        <div id="-carItem-container">Quantity
-          <Button class= "quantity-btn">+</Button>
-          <Button class= "quantity-btn">-</Button>
-        </div>
-        <button>Remove</button>
-      </div>
-    </div>
-    <div>
-      <p>Your Cart is empty</p>
-    </div>-->
+  <div class="cart">Cart
     <div class="container">
       <br />
       <hr />
@@ -21,7 +7,7 @@
       <div class="card">
         <table class="table table-hover shopping-cart-wrap">
           <thead class="text-muted">
-            <tr>
+            <tr  v-if="products>0">
               <th scope="col">Product</th>
               <th scope="col" width="120">Quantity</th>
               <th scope="col" width="120">Price</th>
@@ -29,18 +15,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr
-              class="each-cart-product"
-              v-for="(product, key) in products"
-              :key="key"
-            >
+            <tr class="each-cart-product" v-for="(product, key) in products" :key="key">
               <td>
                 <figure class="media">
                   <div class="img-wrap">
-                    <img
-                      src="../assets/images/asus.jpg"
-                      class="img-thumbnail img-sm"
-                    />
+                    <img src="../assets/images/asus.jpg" class="img-thumbnail img-sm" />
                   </div>
                   <figcaption class="media-body">
                     <h6 class="title text-truncate">{{ product.name }}</h6>
@@ -65,11 +44,19 @@
                 <p
                   class="btn btn-outline-danger btn-round"
                   v-on:click="removeItem(product)"
-                >
-                  × Remove
-                </p>
+                >× Remove</p>
               </td>
             </tr>
+            <tr  v-if="products>0">
+              <th scope="col">Total</th>
+              <th scope="col" width="120">${{totalPrice}}</th>
+              <th scope="col" width="120">
+                <button>Clear Cart</button>
+              </th>
+            </tr>
+            <p  v-else>
+              Your Cart is empty
+            </p>
           </tbody>
         </table>
       </div>
@@ -86,7 +73,8 @@
 export default {
   data: function() {
     return {
-      products: {}
+      products: {},
+      totalPrice: 0
     };
   },
   methods: {
@@ -103,6 +91,9 @@ export default {
   },
   mounted() {
     this.products = this.$store.getters.getCart;
+    for(var i = 0; i < this.products.length; i++) {
+      this.totalPrice = this.totalPrice + (this.products[i].price * this.products[i].number);
+    }
   }
 };
 </script>
