@@ -46,12 +46,14 @@
                   v-on:click="removeItem(product)"
                 >× Remove</p>
               </td>
+              
             </tr>
             <tr  v-if="!cartIsEmpty">
-              <th scope="col">Total</th>
-              <th scope="col" width="120">${{totalPrice}}</th>
-              <th scope="col" width="120">
-                <button>Clear Cart</button>
+              <th class="padFix" scope="col">Total</th>
+              <th class="padFix" scope="col" width="120">${{totalPrice}}</th>
+              <th scope="col" width="170"></th>
+              <th id="alignRight" scope="col" width="120">
+                <p class="btn btn-outline-danger btn-round text-right">Clear All</p>
               </th>
             </tr>
             <p  v-if="cartIsEmpty">
@@ -61,6 +63,7 @@
         </table>
       </div>
       <!-- card.// -->
+      <p id = "checkout" class="btn btn-outline-success btn-round ">Checkout</p>
     </div>
     <!--container end.//-->
 
@@ -181,4 +184,18 @@ var {
 .text-truncate {
   padding-top: 10px;
 }
+.padFix{
+  padding-top: 20px;
+}
+#alignRight{
+  padding-left: 10px;
+}
+#checkout{
+  width: 300px;
+  background-color: green;
+}
+.table{
+  
+}
+
 </style>

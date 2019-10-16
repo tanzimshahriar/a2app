@@ -5,8 +5,8 @@
       <h5 class="card-title">{{ name }}</h5>
       <span class="price-new">${{ price }}</span>
       <p>{{ description }}</p>
-      <div id="countItem" v-if="product.quantity<10" >
-         <h5 v-for="item in product.quantity">{{item}} Item remaining</h5>
+      <div id="countItem" v-if="product.quantity<10 && product.quantity!=0" >
+         <h5> Item remaining {{product.quantity}}</h5>
       </div>
     </div>   
     <div id="soldOut" v-if="outOfQty">
@@ -115,6 +115,6 @@ export default {
   color:red;
 }
 #countItem{
-  color:yellow;
+  color:rgb(252, 175, 10);
 }
 </style>
