@@ -12,11 +12,12 @@
         v-bind:errorMessage="errorMessage"
         @submit="submitSignupForm"
       />
-    </div>
-    <div class="modal" v-if="signupSuccessModal">
+    </div> 
+    <div class="modalsignupmessage" v-if="signupSuccessModal">
       <CustomMessage
-        title="Signup completed"
-        message="Your account has been created successfully."
+        title="Signup completed!!"
+        message="Congratulations Your account has been created successfully. 
+        Login now to verify your account"
         @close="handleSuccessSignupModalClose"
       />
     </div>
@@ -120,3 +121,14 @@ export default {
   }
 };
 </script>
+<style scoped>
+
+.modalsignupmessage {
+  margin-top: 10%;
+  background: white;
+  display: flex;
+}
+     
+  
+</style>
+

@@ -1,12 +1,20 @@
 <template>
   <div v-if="this.$props.showUnverified && this.$props.loggedIn">
-    <CustomMessage
-      title="Verify Your Email to continue"
+    <br>
+    <CustomMessage 
+      
+      title="Please verify Your Email to continue"
       message="A confirmation code has been sent to your email. Please enter the confirmation code."
     />
+    <br>
+    <br>
     <form @submit="submitVerificationCode">
-      <input type="text" placeholder="Verification Code" v-model="verificationCodeEntered" />
-      <input value="Submit" type="submit" />
+      <input id="verbtn"
+        type="text"
+        placeholder="Verification Code"
+        v-model="verificationCodeEntered"
+      />
+      <input id="submit" value="Submit" type="submit" />
     </form>
     <div class="error-msg" v-if="showErrorMessage">{{ this.errorMessage }}</div>
   </div>
@@ -166,5 +174,20 @@ export default {
 }
 .btn-secondary {
   background-color: rgb(57, 116, 77);
+}
+#submit{
+  background-color: rgb(57, 116, 77);
+  height: 30px;
+  width: 100px;
+  border-radius: 0.5rem;
+  color: white;
+}
+#verbtn{
+  width: 400px;
+  text-align: center;
+  margin: 5px;
+  border-style: solid;
+  border-color: rgb(202, 202, 202);
+  border-width: 1px;
 }
 </style>
