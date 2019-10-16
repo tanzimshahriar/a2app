@@ -55,6 +55,15 @@ export default {
     this.quantity = this.$props.product.quantity;
     this.price = this.$props.product.price;
     this.imagesrc = this.$props.product.imagesrc;
+  },
+  watch: {
+    product: function(newProp) {
+      this.name = this.newProp.product.name;
+      this.description = this.newProp.product.description;
+      this.quantity = this.newProp.product.quantity;
+      this.price = this.newProp.product.price;
+      this.imagesrc = this.newProp.product.imagesrc;
+    }
   }
 };
 </script>
