@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img alt="Product Image not available"  v-bind:src="('this.imagesrc')"/>
+    <img alt="Product Image not available"  src="../assets/images/asus.jpg"/>
     <h5 class="card-title">{{ name }}</h5>
     <span class="price-new">${{ price }}</span>
     <p>{{ description }}</p>
@@ -50,8 +50,6 @@ export default {
     };
   },
   mounted() {
-    console.log("mounted")
-    console.log(this.$props)
     this.name = this.$props.product.name;
     this.description = this.$props.product.description;
     this.quantity = this.$props.product.quantity;
