@@ -1,15 +1,15 @@
 <template>
   <div v-if="this.$props.showUnverified && this.$props.loggedIn">
-    <br>
-    <CustomMessage 
-      
+    <br />
+    <CustomMessage
       title="Please verify Your Email to continue"
       message="A confirmation code has been sent to your email. Please enter the confirmation code."
     />
-    <br>
-    <br>
+    <br />
+    <br />
     <form @submit="submitVerificationCode">
-      <input id="verbtn"
+      <input
+        id="verbtn"
         type="text"
         placeholder="Verification Code"
         v-model="verificationCodeEntered"
@@ -34,8 +34,12 @@
     <h1>Products</h1>
     <div class="container-fluid">
       <div class="row justify-content-center">
-        <div class="col-lg-2 col-md-4 col-sm-4" v-for="(product, key) in products" :key="key">
-          <Product v-bind:product="product"/>
+        <div
+          class="col-lg-2 col-md-4 col-sm-4"
+          v-for="(product, key) in products"
+          :key="key"
+        >
+          <Product v-bind:product="product" />
         </div>
       </div>
     </div>
@@ -87,8 +91,6 @@ export default {
   },
   methods: {
     submitVerificationCode() {
-      console.log(this.verificationCodeEntered);
-      console.log("token" + this.$store.state.user.token);
       if (this.verificationCodeEntered != "") {
         this.showErrorMessage = false;
         this.errorMessage = "";
@@ -115,7 +117,6 @@ export default {
               this.showErrorMessage = true;
               this.errorMessage = "*verification failed, try again";
             }
-            console.log(res.result);
           })
           .catch(err => {
             if (err.response.data.errorCode == "Invalid") {
@@ -128,10 +129,8 @@ export default {
         this.showErrorMessage = true;
         this.errorMessage = "*please enter the verification code";
       }
-      console.log("ErrorMessage:" + this.errorMessage);
     },
     fetchProducts() {
-      console.log("fetchProducts()");
       const url =
         process.env.NODE_ENV == "production"
           ? "https://assignment-two-server.appspot.com/getproducts"
@@ -175,14 +174,14 @@ export default {
 .btn-secondary {
   background-color: rgb(57, 116, 77);
 }
-#submit{
+#submit {
   background-color: rgb(57, 116, 77);
   height: 30px;
   width: 100px;
   border-radius: 0.5rem;
   color: white;
 }
-#verbtn{
+#verbtn {
   width: 400px;
   text-align: center;
   margin: 5px;

@@ -10,11 +10,15 @@ export default new Vuex.Store({
       token: localStorage.getItem("access_token") || null,
       email: ""
     },
-    showUnverified: false
+    showUnverified: false,
+    cart: []
   },
   getters: {
     loggedIn(state) {
       return state.user.token == null ? false : true;
+    },
+    getCart(state) {
+      return state.cart;
     }
   },
   mutations: {
@@ -26,6 +30,29 @@ export default new Vuex.Store({
     },
     setUserEmail(state, email) {
       state.user.email = email;
+    },
+    addItemToCart(state, item) {
+      var itemToBeAdded = {};
+      for (var i = 0; i < state.cart.length; i++) {
+        if (state.cart[i].name == item.name) {
+          state.cart[i].number = state.cart[i].number + 1;
+          return;
+        }
+      }
+      itemToBeAdded = {
+        name: item.name,
+        price: item.price,
+        number: 1
+      };
+      state.cart.push(itemToBeAdded);
+    },
+    removeItem(state, item) {
+      for (var i = 0; i < state.cart.length; i++) {
+        if (state.cart[i].name == item.name) {
+          state.cart.splice(i,1);
+          return;
+        }
+      }
     }
   },
   actions: {
@@ -54,6 +81,21 @@ export default new Vuex.Store({
         localStorage.removeItem("access_token");
         context.commit("destroyToken");
       }
-    }
-  }
+    },
+    decreaseNumber(context, item) {
+      for (var i = 0; i < context.state.cart.length; i++) {
+        if (context.state.cart[i].name == item.name) {
+          if(context.state.cart[i].number>1){
+            context.state.cart[i].number = context.state.cart[i].number - 1;
+            return
+          }
+          else if(context.state.cart[i].number==1){
+            context.commit("removeItem", item);
+            return
+          }
+        }
+      }
+    },
+  },
+  
 });
