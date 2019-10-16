@@ -1,24 +1,55 @@
 <template>
   <div>
-    <div class="product-title">{{ this.product.title }}</div>
-    <div class="product-price">{{ this.product.price }}</div>
+    <img alt="Product Image not available" v-bind:src="'obj.imagesrc'" />
+    <h5 class="card-title">{{ name }}</h5>
+    <span class="price-new">${{ price }}</span>
+    <p>{{ description }}</p>
+    <button type="button" class="btn btn-secondary btn-sm btn-block">
+      Add to Cart
+      <img src="this.props.imagesrc" width="35px" height="35px" />
+    </button>
+    <br />
+    <br />
   </div>
 </template>
 
 <script>
 export default {
-  name: "Product",
   props: {
     product: {
-      title: {
+      name: {
         type: String,
         required: true
       },
       price: {
+        type: Number,
+        required: true
+      },
+      quantity: {
+        type: Number,
+        required: true
+      },
+      description: {
         type: String,
         required: true
-      }
+      },
     }
+  },
+  data: function() {
+    return {
+      name: "",
+      description: "",
+      quantity: 0,
+      price: 0
+    };
+  },
+  mounted() {
+    console.log("mounted")
+    console.log(this.$props)
+    this.name = this.$props.product.name;
+    this.description = this.$props.product.description;
+    this.quantity = this.$props.product.quantity;
+    this.price = this.$props.product.price;
   }
 };
 </script>
