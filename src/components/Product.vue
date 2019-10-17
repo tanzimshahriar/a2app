@@ -5,18 +5,17 @@
       <h5 class="card-title">{{ name }}</h5>
       <span class="price-new">${{ price }}</span>
       <p>{{ description }}</p>
-      <div id="countItem" v-if="product.quantity<10 && product.quantity!=0" >
-         <h5> Item remaining {{product.quantity}}</h5>
+      <div id="countItem" v-if="product.quantity < 10 && product.quantity != 0">
+        <h5>Item remaining {{ product.quantity }}</h5>
       </div>
-    </div>   
+    </div>
     <div id="soldOut" v-if="outOfQty">
       <h5>Sorry Product Sold out</h5>
-    </div>   
+    </div>
     <button
-    v-if="!outOfQty"
+      v-if="!outOfQty"
       id="pd-Btn"
       type="button"
-       
       class="btn btn-secondary btn-sm btn-block"
       v-on:click="addCartButtonClicked"
     >
@@ -90,9 +89,9 @@ export default {
       }
     }
   },
-  computed:{
-    outOfQty(){
-      return this.product.quantity>0?false: true;
+  computed: {
+    outOfQty() {
+      return this.product.quantity > 0 ? false : true;
     }
   }
 };
@@ -111,10 +110,10 @@ export default {
 #pd-Btn {
   background-color: rgb(57, 116, 77);
 }
-#soldOut{
-  color:red;
+#soldOut {
+  color: red;
 }
-#countItem{
-  color:rgb(252, 175, 10);
+#countItem {
+  color: rgb(252, 175, 10);
 }
 </style>

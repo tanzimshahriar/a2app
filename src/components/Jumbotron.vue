@@ -11,14 +11,6 @@
                 slow? much faster, much stronger, much prettier and battery life
                 last much longer what else do you want?<br />
               </p>
-              <a href="#" class="btn btn-warning"
-                >Add to Cart
-                <img
-                  src="../assets/images/cart1.png"
-                  width="35px"
-                  height="35px"
-                />
-              </a>
             </header>
             <!-- intro-wrap .// -->
           </div>

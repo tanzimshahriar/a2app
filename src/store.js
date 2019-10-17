@@ -49,7 +49,7 @@ export default new Vuex.Store({
     removeItem(state, item) {
       for (var i = 0; i < state.cart.length; i++) {
         if (state.cart[i].name == item.name) {
-          state.cart.splice(i,1);
+          state.cart.splice(i, 1);
           return;
         }
       }
@@ -85,17 +85,18 @@ export default new Vuex.Store({
     decreaseNumber(context, item) {
       for (var i = 0; i < context.state.cart.length; i++) {
         if (context.state.cart[i].name == item.name) {
-          if(context.state.cart[i].number>1){
+          if (context.state.cart[i].number > 1) {
             context.state.cart[i].number = context.state.cart[i].number - 1;
-            return
-          }
-          else if(context.state.cart[i].number==1){
+            return;
+          } else if (context.state.cart[i].number == 1) {
             context.commit("removeItem", item);
-            return
+            return;
           }
         }
       }
     },
-  },
-  
+    clearCart(context) {
+      context.state.cart = [];
+    }
+  }
 });
