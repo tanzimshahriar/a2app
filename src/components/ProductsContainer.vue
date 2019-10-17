@@ -51,7 +51,6 @@ import Product from "./Product";
 import CustomMessage from "../views/customMessage";
 import axios from "axios";
 import Jumbotron from "./Jumbotron";
-import Search from "./Search";
 
 export default {
   name: "ProductsContainer",
@@ -148,8 +147,7 @@ export default {
   components: {
     Product,
     CustomMessage,
-    Jumbotron,
-    Search
+    Jumbotron
   }
 };
 </script>

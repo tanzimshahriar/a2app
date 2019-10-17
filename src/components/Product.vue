@@ -71,18 +71,19 @@ export default {
   },
   watch: {
     product: function(newProp) {
-      this.name = this.newProp.product.name;
-      this.description = this.newProp.product.description;
-      this.quantity = this.newProp.product.quantity;
-      this.price = this.newProp.product.price;
-      this.imagesrc = this.newProp.product.imagesrc;
+      this.name = newProp.product.name;
+      this.description = newProp.product.description;
+      this.quantity = newProp.product.quantity;
+      this.price = newProp.product.price;
+      this.imagesrc = newProp.product.imagesrc;
     }
   },
   methods: {
     addCartButtonClicked() {
       let item = {
         name: this.name,
-        price: this.price
+        price: this.price,
+        imagesrc: this.imagesrc
       };
       if (this.quantity > 0) {
         this.$store.commit("addItemToCart", item);
@@ -94,8 +95,8 @@ export default {
       return this.product.quantity > 0 ? false : true;
     },
     image() {
-      let string = this.product.imagesrc.split('assets')[1];
-      return require(("../assets"+string));
+      let string = this.product.imagesrc.split("assets")[1];
+      return require("../assets" + string);
     }
   }
 };

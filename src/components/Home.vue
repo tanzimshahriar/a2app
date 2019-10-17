@@ -24,7 +24,7 @@ export default {
     };
   },
   watch: {
-    userLoggedIn(newValue, oldValue) {
+    userLoggedIn(newValue) {
       this.loggedIn = newValue;
     }
   },

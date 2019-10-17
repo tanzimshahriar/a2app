@@ -18,14 +18,14 @@
           <tbody>
             <tr
               class="each-cart-product"
-              v-for="(product, key) in cartProducts"
-              :key="key"
+              v-for="product in cartProducts"
+              :key="product.id"
             >
               <td>
                 <figure class="media">
                   <div class="img-wrap">
                     <img
-                      src="../assets/images/asus.jpg"
+                      :src="image(product.imagesrc)"
                       class="img-thumbnail img-sm"
                     />
                   </div>
@@ -108,6 +108,10 @@ export default {
     },
     clearCart() {
       this.$store.dispatch("clearCart");
+    },
+    image(src) {
+      let string = src.split("assets")[1];
+      return require("../assets" + string);
     }
   },
   computed: {

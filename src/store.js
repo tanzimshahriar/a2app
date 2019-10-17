@@ -42,7 +42,8 @@ export default new Vuex.Store({
       itemToBeAdded = {
         name: item.name,
         price: item.price,
-        number: 1
+        number: 1,
+        imagesrc: item.imagesrc
       };
       state.cart.push(itemToBeAdded);
     },

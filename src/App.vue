@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import NavBar from "./components/NavBar";
 
 export default {

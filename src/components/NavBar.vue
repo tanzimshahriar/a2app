@@ -80,7 +80,6 @@
             </li>
           </ul>
         </div>
-        <Search></Search>
       </div>
       <!-- container //  -->
     </nav>
@@ -89,12 +88,8 @@
 </template>
 
 <script>
-import Search from "./Search";
 export default {
   name: "NavBar",
-  components: {
-    Search
-  },
   props: {
     btnOne: {
       type: String,
