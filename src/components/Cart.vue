@@ -1,5 +1,6 @@
 <template>
-  <div class="cart">Cart
+  <div class="cart">
+    <h1><br />Cart</h1>
     <div class="container">
       <br />
       <hr />
@@ -7,19 +8,26 @@
       <div class="card">
         <table class="table table-hover shopping-cart-wrap">
           <thead class="text-muted">
-            <tr  v-if="products>0">
+            <tr v-if="!cartIsEmpty">
               <th scope="col">Product</th>
               <th scope="col" width="120">Quantity</th>
               <th scope="col" width="120">Price</th>
-              <th scope="col" width="200" class="text-right">Action</th>
+              <th scope="col" width="200" class="text-right"></th>
             </tr>
           </thead>
           <tbody>
-            <tr class="each-cart-product" v-for="(product, key) in products" :key="key">
+            <tr
+              class="each-cart-product"
+              v-for="product in cartProducts"
+              :key="product.id"
+            >
               <td>
                 <figure class="media">
                   <div class="img-wrap">
-                    <img src="../assets/images/asus.jpg" class="img-thumbnail img-sm" />
+                    <img
+                      :src="image(product.imagesrc)"
+                      class="img-thumbnail img-sm"
+                    />
                   </div>
                   <figcaption class="media-body">
                     <h6 class="title text-truncate">{{ product.name }}</h6>
@@ -44,25 +52,42 @@
                 <p
                   class="btn btn-outline-danger btn-round"
                   v-on:click="removeItem(product)"
-                >× Remove</p>
+                >
+                  Remove
+                </p>
               </td>
             </tr>
-            <tr  v-if="products>0">
-              <th scope="col">Total</th>
-              <th scope="col" width="120">${{totalPrice}}</th>
-              <th scope="col" width="120">
-                <button>Clear Cart</button>
+            <tr v-if="!cartIsEmpty">
+              <th class="padFix" scope="col"></th>
+              <th class="padFix" scope="col">Total:</th>
+              <th class="padFix" scope="col" width="120">
+                ${{ getTotalPrice }}
+              </th>
+              <th class="text-right" scope="col" width="120">
+                <p
+                  v-on:click="clearCart()"
+                  class="btn btn-outline-danger btn-round"
+                >
+                  Clear Cart
+                </p>
               </th>
             </tr>
-            <p  v-else>
-              Your Cart is empty
+            <br />
+            <p v-if="cartIsEmpty">
+              Cart is empty
             </p>
           </tbody>
         </table>
       </div>
-      <!-- card.// -->
+      <br />
+      <p
+        v-if="!cartIsEmpty"
+        id="checkout"
+        class="btn btn-outline-success btn-round "
+      >
+        Checkout
+      </p>
     </div>
-    <!--container end.//-->
 
     <br />
     <br />
@@ -71,12 +96,6 @@
 
 <script>
 export default {
-  data: function() {
-    return {
-      products: {},
-      totalPrice: 0
-    };
-  },
   methods: {
     addQuantity(item) {
       this.$store.commit("addItemToCart", item);
@@ -85,14 +104,32 @@ export default {
       this.$store.dispatch("decreaseNumber", item);
     },
     removeItem(item) {
-      console.log(item);
       this.$store.commit("removeItem", item);
+    },
+    clearCart() {
+      this.$store.dispatch("clearCart");
+    },
+    image(src) {
+      let string = src.split("assets")[1];
+      return require("../assets" + string);
     }
   },
-  mounted() {
-    this.products = this.$store.getters.getCart;
-    for(var i = 0; i < this.products.length; i++) {
-      this.totalPrice = this.totalPrice + (this.products[i].price * this.products[i].number);
+  computed: {
+    cartIsEmpty() {
+      return this.$store.getters.getCart.length > 0 ? false : true;
+    },
+    getTotalPrice() {
+      let totalPrice = 0;
+      for (var i = 0; i < this.$store.getters.getCart.length; i++) {
+        totalPrice =
+          totalPrice +
+          this.$store.getters.getCart[i].price *
+            this.$store.getters.getCart[i].number;
+      }
+      return totalPrice;
+    },
+    cartProducts() {
+      return this.$store.getters.getCart;
     }
   }
 };
@@ -174,5 +211,21 @@ var {
 }
 .text-truncate {
   padding-top: 10px;
+}
+.padFix {
+  padding-top: 20px;
+}
+#alignRight {
+  padding-left: 10px;
+}
+#checkout {
+  width: 300px;
+  background-color: rgb(57, 116, 77);
+  color: white;
+}
+#checkout:hover {
+  background-color: white;
+  color: rgb(57, 116, 77);
+  cursor: pointer;
 }
 </style>

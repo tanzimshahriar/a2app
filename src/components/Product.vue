@@ -1,13 +1,19 @@
 <template>
   <div>
     <div class="pd-container">
-      <img alt="Product Image not available" src="../assets/images/asus.jpg" />
+      <img alt="Product Image not available" :src="image" />
       <h5 class="card-title">{{ name }}</h5>
       <span class="price-new">${{ price }}</span>
       <p>{{ description }}</p>
+      <div id="countItem" v-if="product.quantity < 10 && product.quantity != 0">
+        <h5>Item remaining {{ product.quantity }}</h5>
+      </div>
     </div>
-
+    <div id="soldOut" v-if="outOfQty">
+      <h5>Sorry, Product Sold out</h5>
+    </div>
     <button
+      v-if="!outOfQty"
       id="pd-Btn"
       type="button"
       class="btn btn-secondary btn-sm btn-block"
@@ -65,22 +71,32 @@ export default {
   },
   watch: {
     product: function(newProp) {
-      this.name = this.newProp.product.name;
-      this.description = this.newProp.product.description;
-      this.quantity = this.newProp.product.quantity;
-      this.price = this.newProp.product.price;
-      this.imagesrc = this.newProp.product.imagesrc;
+      this.name = newProp.product.name;
+      this.description = newProp.product.description;
+      this.quantity = newProp.product.quantity;
+      this.price = newProp.product.price;
+      this.imagesrc = newProp.product.imagesrc;
     }
   },
   methods: {
     addCartButtonClicked() {
       let item = {
         name: this.name,
-        price: this.price
+        price: this.price,
+        imagesrc: this.imagesrc
       };
       if (this.quantity > 0) {
         this.$store.commit("addItemToCart", item);
       }
+    }
+  },
+  computed: {
+    outOfQty() {
+      return this.product.quantity > 0 ? false : true;
+    },
+    image() {
+      let string = this.product.imagesrc.split("assets")[1];
+      return require("../assets" + string);
     }
   }
 };
@@ -98,5 +114,11 @@ export default {
 }
 #pd-Btn {
   background-color: rgb(57, 116, 77);
+}
+#soldOut {
+  color: red;
+}
+#countItem {
+  color: rgb(252, 175, 10);
 }
 </style>
