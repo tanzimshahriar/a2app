@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="pd-container">
-      <img alt="Product Image not available" src="../assets/images/asus.jpg" />
+      <img alt="Product Image not available" :src="image" />
       <h5 class="card-title">{{ name }}</h5>
       <span class="price-new">${{ price }}</span>
       <p>{{ description }}</p>
@@ -10,7 +10,7 @@
       </div>
     </div>
     <div id="soldOut" v-if="outOfQty">
-      <h5>Sorry Product Sold out</h5>
+      <h5>Sorry, Product Sold out</h5>
     </div>
     <button
       v-if="!outOfQty"
@@ -92,6 +92,10 @@ export default {
   computed: {
     outOfQty() {
       return this.product.quantity > 0 ? false : true;
+    },
+    image() {
+      let string = this.product.imagesrc.split('assets')[1];
+      return require(("../assets"+string));
     }
   }
 };
