@@ -87,6 +87,12 @@ export default {
       };
       if (this.quantity > 0) {
         this.$store.commit("addItemToCart", item);
+
+        let payload = {
+          text : this.name + " added to cart", 
+          timeout: 5000
+        }
+        this.$store.commit("showSnackbar", payload);
       }
     }
   },

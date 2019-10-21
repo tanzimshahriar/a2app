@@ -52,12 +52,9 @@ export default {
           .then(res => {
             if (res.status == 200 && res.data.result == "Verified") {
               this.showUnverified = false;
-              this.$store.commit("setUserEmail", res.data.email);
               this.$store.state.showUnverified = false;
             } else if (res.status == 200 && res.data.result == "unverified") {
-              this.$store.state.user.email = res.data.email;
               this.showUnverified = true;
-              this.$store.commit("setUserEmail", res.data.email);
               this.$store.state.showUnverified = true;
             }
           })
@@ -73,8 +70,12 @@ export default {
       }
     },
     userVerificationDone() {
-      //todo: vanlal show a popup alert using bootstrap saying "Thanks for verifying your email"
       this.checkIfUserVerificationhouldBeShowed();
+      let payload = {
+          text : this.name + "Thanks for verifying your email.", 
+          timeout: 5000
+        }
+      this.$store.commit("showSnackbar", payload);
     }
   },
   computed: {

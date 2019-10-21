@@ -11,6 +11,12 @@ export default new Vuex.Store({
       email: ""
     },
     showUnverified: false,
+    snackbar: {
+      visible: false,
+      text: null,
+      timeout: 5000,
+      multiline: false
+    },
     cart: []
   },
   getters: {
@@ -25,11 +31,11 @@ export default new Vuex.Store({
     retrieveToken(state, token) {
       state.user.token = token;
     },
+    saveEmail(state, email) {
+      state.user.email = email;
+    },
     destroyToken(state) {
       state.user.token = null;
-    },
-    setUserEmail(state, email) {
-      state.user.email = email;
     },
     addItemToCart(state, item) {
       var itemToBeAdded = {};
@@ -54,7 +60,25 @@ export default new Vuex.Store({
           return;
         }
       }
-    }
+    },
+    showSnackbar(state, payload) {
+      state.snackbar.text = payload.text
+      state.snackbar.multiline = (payload.text.length > 50) ? true : false
+      if (payload.multiline) {
+        state.snackbar.multiline = payload.multiline
+      }
+      if (payload.timeout) {
+        state.snackbar.timeout = payload.timeout
+      }
+
+      state.snackbar.visible = true
+    },
+    closeSnackbar(state) {
+      state.snackbar.visible = false
+      state.snackbar.multiline = false
+      state.snackbar.timeout = 5000
+      state.snackbar.text = null
+    },
   },
   actions: {
     retrieveToken(context, credentials) {
@@ -66,9 +90,20 @@ export default new Vuex.Store({
         axios
           .post(url, credentials)
           .then(res => {
+
             const token = res.data.token;
+            const email = res.data.email
             localStorage.setItem("access_token", token);
             context.commit("retrieveToken", token);
+            context.commit("saveEmail", email);
+
+            let payload = {
+              text : res.data.msg, 
+              timeout: 3000
+            }
+
+          context.commit("showSnackbar", payload);
+
             resolve(res);
           })
           .catch(err => {
