@@ -1,17 +1,22 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Cart from "./components/Cart.vue";
-import Home from "./components/Home.vue";
-// import ProductsContainer from "./components/ProductsContainer.vue";
-import Login from "./components/Login.vue";
-import Signup from "./components/Signup.vue";
-import Logout from "./components/Logout.vue";
-import Profile from "./components/Profile.vue";
+import Cart from "./components/Cart";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
+import Logout from "./components/Logout";
+import Profile from "./components/Profile";
+import Smartphones from "./components/Smartphones";
 
 Vue.use(Router);
 
 const router = new Router({
   routes: [
+    {
+      path: "/",
+      name: "Home",
+      component: Home
+    },
     {
       path: "/cart",
       name: "cart",
@@ -37,9 +42,9 @@ const router = new Router({
       }
     },
     {
-      path: "/",
-      name: "home",
-      component: Home
+      path: "/smartphones",
+      name: "smartphones",
+      component: Smartphones
     },
     {
       path: "/logout",

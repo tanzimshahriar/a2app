@@ -33,7 +33,7 @@
                 !(this.$props.showUnverifiedButtons && this.$props.loggedIn)
               "
             >
-              <router-link class="nav-link page-scroll" to="/"
+              <router-link class="nav-link page-scroll" to="/smartphones"
                 >Smartphones</router-link
               >
             </li>

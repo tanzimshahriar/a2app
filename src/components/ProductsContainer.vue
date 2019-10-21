@@ -19,17 +19,6 @@
     <div class="error-msg" v-if="showErrorMessage">{{ this.errorMessage }}</div>
   </div>
   <div v-else>
-    <!-- <h1>Products</h1> -->
-    <!-- <div class="container">
-        <div
-          class="product-box"
-          v-bind:key="product.id"
-          v-for="product in products"
-        >
-          <Product v-bind:product="product" />
-        </div>
-    </div>-->
-    <Jumbotron></Jumbotron>
     <br />
     <h1>Products</h1>
     <div class="container-fluid">
@@ -50,7 +39,6 @@
 import Product from "./Product";
 import CustomMessage from "../views/customMessage";
 import axios from "axios";
-import Jumbotron from "./Jumbotron";
 
 export default {
   name: "ProductsContainer",
@@ -146,8 +134,7 @@ export default {
   },
   components: {
     Product,
-    CustomMessage,
-    Jumbotron
+    CustomMessage
   }
 };
 </script>

@@ -15,7 +15,7 @@ router.beforeEach((to, from, next) => {
       next();
     } else {
       next({
-        name: "home"
+        name: "Home"
       });
     }
   } else if (
@@ -23,7 +23,7 @@ router.beforeEach((to, from, next) => {
   ) {
     if (store.state.showUnverified) {
       next({
-        name: "home"
+        name: "Home"
       });
     } else {
       next();
