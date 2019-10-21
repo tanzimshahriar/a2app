@@ -53,6 +53,7 @@ export default {
             if (res.status == 200 && res.data.result == "Verified") {
               this.showUnverified = false;
               this.$store.state.showUnverified = false;
+              
             } else if (res.status == 200 && res.data.result == "unverified") {
               this.showUnverified = true;
               this.$store.state.showUnverified = true;
@@ -71,11 +72,6 @@ export default {
     },
     userVerificationDone() {
       this.checkIfUserVerificationhouldBeShowed();
-      let payload = {
-          text : this.name + "Thanks for verifying your email.", 
-          timeout: 5000
-        }
-      this.$store.commit("showSnackbar", payload);
     }
   },
   computed: {

@@ -23,11 +23,12 @@
     <h1>Products</h1>
     <div class="container-fluid">
       <div class="row justify-content-center">
-        <div
-          class="col-lg-2 col-md-4 col-sm-4"
-          v-for="(product, key) in products"
-          :key="key"
-        >
+        <v-progress-circular
+          v-if="!products.length || products.length <1"
+          indeterminate
+          color="primary"
+        ></v-progress-circular>
+        <div class="col-lg-2 col-md-4 col-sm-4" v-for="(product, key) in products" :key="key">
           <Product v-bind:product="product" />
         </div>
       </div>
@@ -100,6 +101,11 @@ export default {
           .then(res => {
             if (res.data.result == "Success") {
               this.$emit("userJustVerified");
+              let payload = {
+                text: "Thanks for verifying your email.",
+                timeout: 5000
+              };
+              this.$store.commit("showSnackbar", payload);
             } else {
               this.showErrorMessage = true;
               this.errorMessage = "*verification failed, try again";

@@ -58,7 +58,7 @@ export default {
         this.$store
           .dispatch("retrieveToken", postData)
           .then(res => {
-            this.$router.push("./");
+            this.$router.push("./smartphones");
           })
           .catch(err => {
             this.errorMessage = err.response.data.msg;

@@ -37,6 +37,9 @@ export default new Vuex.Store({
     destroyToken(state) {
       state.user.token = null;
     },
+    deleteEmail(state) {
+      state.user.email = ""
+    },
     addItemToCart(state, item) {
       var itemToBeAdded = {};
       for (var i = 0; i < state.cart.length; i++) {
@@ -116,6 +119,7 @@ export default new Vuex.Store({
       if (context.getters.loggedIn) {
         localStorage.removeItem("access_token");
         context.commit("destroyToken");
+        context.commit("deleteEmail");
       }
     },
     decreaseNumber(context, item) {
