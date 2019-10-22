@@ -7,6 +7,7 @@ import Signup from "./components/Signup";
 import Logout from "./components/Logout";
 import Profile from "./components/Profile";
 import Smartphones from "./components/Smartphones";
+import store from "./store";
 
 Vue.use(Router);
 
@@ -63,6 +64,31 @@ const router = new Router({
       }
     }
   ]
+});
+
+router.beforeEach((to, from, next) => {
+  //console.log(`navigating to ${to.name} from ${from.name}`);
+  if (to.matched.some(route => route.meta.requiresLoggedOut)) {
+    if (!store.getters.loggedIn) {
+      next();
+    } else {
+      next({
+        name: "Home"
+      });
+    }
+  } else if (
+    to.matched.some(route => route.meta.requiresAccountVerifiedWhenLoggedIn)
+  ) {
+    if (store.state.showUnverified) {
+      next({
+        name: "Home"
+      });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;

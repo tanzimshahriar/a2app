@@ -38,7 +38,7 @@ export default new Vuex.Store({
       state.user.token = null;
     },
     deleteEmail(state) {
-      state.user.email = ""
+      state.user.email = "";
     },
     addItemToCart(state, item) {
       var itemToBeAdded = {};
@@ -65,23 +65,23 @@ export default new Vuex.Store({
       }
     },
     showSnackbar(state, payload) {
-      state.snackbar.text = payload.text
-      state.snackbar.multiline = (payload.text.length > 50) ? true : false
+      state.snackbar.text = payload.text;
+      state.snackbar.multiline = payload.text.length > 50 ? true : false;
       if (payload.multiline) {
-        state.snackbar.multiline = payload.multiline
+        state.snackbar.multiline = payload.multiline;
       }
       if (payload.timeout) {
-        state.snackbar.timeout = payload.timeout
+        state.snackbar.timeout = payload.timeout;
       }
 
-      state.snackbar.visible = true
+      state.snackbar.visible = true;
     },
     closeSnackbar(state) {
-      state.snackbar.visible = false
-      state.snackbar.multiline = false
-      state.snackbar.timeout = 5000
-      state.snackbar.text = null
-    },
+      state.snackbar.visible = false;
+      state.snackbar.multiline = false;
+      state.snackbar.timeout = 5000;
+      state.snackbar.text = null;
+    }
   },
   actions: {
     retrieveToken(context, credentials) {
@@ -93,19 +93,18 @@ export default new Vuex.Store({
         axios
           .post(url, credentials)
           .then(res => {
-
             const token = res.data.token;
-            const email = res.data.email
+            const email = res.data.email;
             localStorage.setItem("access_token", token);
             context.commit("retrieveToken", token);
             context.commit("saveEmail", email);
 
             let payload = {
-              text : res.data.msg, 
+              text: res.data.msg,
               timeout: 3000
-            }
+            };
 
-          context.commit("showSnackbar", payload);
+            context.commit("showSnackbar", payload);
 
             resolve(res);
           })

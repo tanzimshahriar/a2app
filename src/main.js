@@ -1,45 +1,22 @@
-import 'babel-polyfill';
+import "babel-polyfill";
 import Vue from "vue";
+
+import Vuetify from "vuetify";
+import 'vuetify/dist/vuetify.min.css'
+
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
-import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
-Vue.use(Vuetify)
-const opts = {}
-export default new Vuetify(opts)
 
 Vue.config.productionTip = false;
 
-router.beforeEach((to, from, next) => {
-  //console.log(`navigating to ${to.name} from ${from.name}`);
-  if (to.matched.some(route => route.meta.requiresLoggedOut)) {
-    if (!store.getters.loggedIn) {
-      next();
-    } else {
-      next({
-        name: "Home"
-      });
-    }
-  } else if (
-    to.matched.some(route => route.meta.requiresAccountVerifiedWhenLoggedIn)
-  ) {
-    if (store.state.showUnverified) {
-      next({
-        name: "Home"
-      });
-    } else {
-      next();
-    }
-  } else {
-    next();
-  }
-});
+Vue.use(Vuetify)
 
 new Vue({
+  Vuetify,
   router,
   store,
   render: h => h(App)

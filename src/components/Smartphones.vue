@@ -53,7 +53,6 @@ export default {
             if (res.status == 200 && res.data.result == "Verified") {
               this.showUnverified = false;
               this.$store.state.showUnverified = false;
-              
             } else if (res.status == 200 && res.data.result == "unverified") {
               this.showUnverified = true;
               this.$store.state.showUnverified = true;

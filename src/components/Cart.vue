@@ -100,33 +100,33 @@ export default {
     addQuantity(item) {
       this.$store.commit("addItemToCart", item);
       let payload = {
-          text : item.name+" added to cart.", 
-          timeout: 5000
-        }
+        text: item.name + " added to cart.",
+        timeout: 5000
+      };
       this.$store.commit("showSnackbar", payload);
     },
     decreaseQuantity(item) {
       this.$store.dispatch("decreaseNumber", item);
       let payload = {
-          text : "Removed 1 " + item.name + "from cart", 
-          timeout: 5000
-        }
+        text: "Removed 1 " + item.name + "from cart",
+        timeout: 5000
+      };
       this.$store.commit("showSnackbar", payload);
     },
     removeItem(item) {
       this.$store.commit("removeItem", item);
       let payload = {
-          text : item.name + " removed from cart", 
-          timeout: 5000
-        }
-        this.$store.commit("showSnackbar", payload);
+        text: item.name + " removed from cart",
+        timeout: 5000
+      };
+      this.$store.commit("showSnackbar", payload);
     },
     clearCart() {
       this.$store.dispatch("clearCart");
       let payload = {
-          text : "Cart cleared", 
-          timeout: 5000
-        }
+        text: "Cart cleared",
+        timeout: 5000
+      };
       this.$store.commit("showSnackbar", payload);
     },
     image(src) {

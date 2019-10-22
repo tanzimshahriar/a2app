@@ -6,12 +6,12 @@
       v-bind:showUnverifiedButtons="showUnverifiedToChild"
       v-bind:loggedIn="userLoggedIn"
     />
-    <Snackbar/>
+    <Snackbar />
   </div>
 </template>
 
 <script>
-import Snackbar from './views/Snackbar';
+import Snackbar from "./views/Snackbar";
 import NavBar from "./components/NavBar";
 
 export default {

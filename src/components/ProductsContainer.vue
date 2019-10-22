@@ -23,12 +23,23 @@
     <h1>Products</h1>
     <div class="container-fluid">
       <div class="row justify-content-center">
+        <!-- <v-col class="d-flex" cols="12" sm="6">
+          <v-select
+            :items="items"
+            label="Solo field"
+            solo>
+          </v-select>
+      </v-col> -->
         <v-progress-circular
-          v-if="!products.length || products.length <1"
+          v-if="!products.length || products.length < 1"
           indeterminate
           color="primary"
         ></v-progress-circular>
-        <div class="col-lg-2 col-md-4 col-sm-4" v-for="(product, key) in products" :key="key">
+        <div
+          class="col-lg-2 col-md-4 col-sm-4"
+          v-for="(product, key) in products"
+          :key="key"
+        >
           <Product v-bind:product="product" />
         </div>
       </div>
@@ -74,7 +85,13 @@ export default {
       images: [],
       verificationCodeEntered: "",
       showErrorMessage: false,
-      errorMessage: ""
+      errorMessage: "",
+      items: [
+        "Name: High to Low",
+        "Name: Low to High",
+        "Price: High to Low",
+        "Price: Low to High"
+      ]
     };
   },
   methods: {
