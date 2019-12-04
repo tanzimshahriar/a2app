@@ -16,12 +16,15 @@
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.2",
     "core-js": "^2.6.5",
-    "css-loader": "^3.2.0",
+    "css-loader": "^3.2.1",
     "jquery": "^3.4.1",
+    "loader": "^2.1.1",
+    "scss": "^0.2.4",
     "vue": "^2.6.10",
     "vue-awesome": "^3.5.4",
     "vue-router": "^3.0.3",
     "vuetify": "^2.1.5",
+    "vuetify-loader": "^1.4.3",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
@@ -32,14 +35,14 @@
     "@vue/cli-service": "^3.11.0",
     "@vue/eslint-config-prettier": "^5.0.0",
     "babel-eslint": "^10.0.1",
-    "deepmerge": "^4.2.0",
+    "deepmerge": "^4.2.2",
     "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-vue": "^5.0.0",
-    "fibers": "^4.0.1",
+    "fibers": "^4.0.2",
     "prettier": "^1.18.2",
     "sass": "^1.23.0",
-    "sass-loader": "^7.0.0",
+    "sass-loader": "^7.3.1",
     "vue-template-compiler": "^2.6.10"
   }
 }

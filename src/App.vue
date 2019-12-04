@@ -1,4 +1,5 @@
 <template>
+<v-app>
   <div id="app">
     <NavBar
       v-bind:btnOne="btnOne"
@@ -8,6 +9,7 @@
     />
     <Snackbar />
   </div>
+  </v-app>
 </template>
 
 <script>
